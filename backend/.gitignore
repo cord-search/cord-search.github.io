@@ -1,5 +1,6 @@
 __pypackages__
 config.py
+.pdm.toml
 # Created by https://www.gitignore.io/api/python,emacs,macos
 # Edit at https://www.gitignore.io/?templates=python,emacs,macos
 
