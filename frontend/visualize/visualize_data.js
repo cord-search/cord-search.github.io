@@ -269,6 +269,7 @@ const load_visualize2 = (dataToRead) => {
 
 const load_visualize = () => {
   if (document.getElementById("Domain").value === "tfidf") {
+    loadProgressBar();
     axios
       .get("http://45.19.182.21:8003/models/covid_tfidf_data.json")
       .then((res) => {
@@ -277,6 +278,7 @@ const load_visualize = () => {
         load_visualize2(tfidf);
       });
   } else if (document.getElementById("Domain").value === "bow") {
+    loadProgressBar();
     axios
       .get("http://45.19.182.21:8003/models/covid_bow_data.json")
       .then((res) => {
