@@ -345,3 +345,18 @@ button {
   width: 15em;
   height: auto;
 }
+
+/* load Bar */
+
+#nprogress .bar {
+  background: red !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px red, 0 0 5px red !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: red !important;
+  border-left-color: red !important;
+}
