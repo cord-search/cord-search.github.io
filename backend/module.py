@@ -67,8 +67,36 @@ class Doc(BaseModel):
     table: List[Ref]
 
 
+class DocSOut(BaseModel):
+    """Document Simple Output Module."""
+
+    paper_id: str
+    title: str
+    text: str
+
+
+class DocSOutWithFT(DocSOut):
+    """Document Simple Output Module with Figure and Table."""
+
+    paper_id: str
+    title: str
+    text: str
+    name: str
+
+
+class DocOut(BaseModel):
+    """Document Complete Output Module."""
+
+    paper_id: str
+    title: str
+    abstract: str
+    body_text: str
+    figure: List[Ref]
+    table: List[Ref]
+
+
 class Docs(BaseModel):
     """Docs Module."""
 
     total: int
-    docs: List[Doc]
+    docs: List[Union[DocSOut, DocSOutWithFT, DocOut]]

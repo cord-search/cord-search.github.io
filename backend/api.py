@@ -42,15 +42,18 @@ Which to you shall seem probable, of every
                           -- The Tempest
 """
 # Http
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import UJSONResponse
 
 # Others
 from es_search import search
 
 # Config
-from config import INDEX_NAME as INDEX
+from config import IDX_DETAIL, IDX_FT, IDX_FULL, IDXS, MAX_RETURN_SIZE
+
+# Types
+from module import Docs
 
 ANY = "*"
 app = FastAPI()
@@ -63,7 +66,40 @@ app.add_middleware(
 )
 
 
-@app.get(f"/{INDEX}/")
-async def query_handle(query: str = "") -> JSONResponse:
-    """Handle default index query."""
-    return await search(query)
+@app.get("/index/full/", response_model=Docs)
+async def index_full_handle(
+    key: str = Query("abstract", regex="^(abstract|body_text)$"),
+    query: str = "covid-19",
+    return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
+) -> UJSONResponse:
+    """Handle full text index query."""
+    return await search(IDX_FULL, key, query, return_size)
+
+
+@app.get("/index/detail/", response_model=Docs)
+async def index_detail_handle(
+    query: str = "covid-19",
+    return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
+) -> UJSONResponse:
+    """Handle detail index query."""
+    return await search(IDX_DETAIL, "text", query, return_size)
+
+
+@app.get("/index/ft/", response_model=Docs)
+async def index_figure_table_handle(
+    query: str = "covid-19",
+    return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
+) -> UJSONResponse:
+    """Handle figure and table query."""
+    return await search(IDX_FT, "ft_text", query, return_size)
+
+
+@app.get("/index/tp/", response_model=Docs)
+async def index_title_paper_id_handle(
+    index: str = Query(IDX_FULL, regex=f"^({'|'.join(IDXS)})$"),
+    key: str = Query("title", regex=f"^(title|paper_id)$"),
+    query: str = "covid-19",
+    return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
+) -> UJSONResponse:
+    """Handle title and paper_id query."""
+    return await search(index, key, query, return_size)

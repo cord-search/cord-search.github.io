@@ -41,37 +41,67 @@ Which to you shall seem probable, of every
   These happen'd accidents
                           -- The Tempest
 """
+# Standard Library
+from itertools import cycle
+
 # DataBase
 from elasticsearch import Elasticsearch
 
 # Config
-from config import INDEX_NAME as INDEX
-from config import RETURN_SIZE
+from config import IDX_DETAIL, IDX_FT, IDX_FULL, RETURN_SIZE
 
 # Types
-from typ import QRY_TYP
+from module import Docs, DocSOut, DocSOutWithFT
+from typing import Dict, Union
 
-ES = Elasticsearch()
+es = Elasticsearch()
+
+DD = Dict[str, Dict[str, str]]
 
 
-async def search(query: str) -> QRY_TYP:
-    """Search the `query' str from elasticsearch."""
+def _paper_id(hit: DD) -> str:
+    """Get paper_id from `hit'."""
+    return hit["_source"]["paper_id"]
+
+
+def _title(hit: DD) -> str:
+    """Get title from `hit'."""
+    return hit["_source"]["title"]
+
+
+def build_doc(hit: DD, index: str, key: str) -> Union[DocSOut, DocSOutWithFT]:
+    """Build doc."""
+    if index in {IDX_DETAIL, IDX_FULL}:
+        return DocSOut(
+            paper_id=_paper_id(hit),
+            title=_title(hit),
+            text=hit["_source"][key],
+        )
+    return DocSOutWithFT(
+        paper_id=_paper_id(hit),
+        title=_title(hit),
+        text=hit["_source"][key],
+        name=hit["_source"]["ft_name"],
+    )
+
+
+async def search(
+    index: str, key: str, query: str, return_size: int = 0
+) -> Docs:
+    """Search the `query' stc in full text `key'."""
     return (
-        lambda hits: {
-            "total": hits["total"],
-            "results": list(
-                map(
-                    lambda hit: {
-                        "title": hit["_source"]["title"],
-                        "content": hit["_source"]["content"],
-                    },
-                    hits["hits"],
-                )
+        lambda hits: Docs(
+            total=hits["total"]["value"],
+            docs=list(
+                map(build_doc, hits["hits"], cycle((index,)), cycle((key,)))
             ),
-        }
+        )
     )(
-        ES.search(
-            index=INDEX,
-            body={"size": RETURN_SIZE, "query": {"match": {"content": query}}},
+        es.search(
+            index=index,
+            body={
+                "size": return_size or RETURN_SIZE,
+                "query": {"match": {key: query}},
+            },
         )["hits"]
     )
