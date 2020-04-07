@@ -165,7 +165,7 @@ def runner(path: Path, pbar: tqdm) -> None:
         :-1
     ]
 
-    pbar.set_description(f"Indexing '{title}'", False)
+    pbar.set_description(f"Indexing '{title}'", refresh=False)
 
     index_it(
         IDX_FULL, body,
@@ -179,7 +179,7 @@ def runner(path: Path, pbar: tqdm) -> None:
             IDX_FT, ft_body,
         )
 
-    pbar.set_description(f"Indexed '{title}'", False)
+    pbar.set_description(f"Indexed '{title}'", refresh=False)
     pbar.update()
 
 
