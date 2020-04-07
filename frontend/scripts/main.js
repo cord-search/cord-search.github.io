@@ -47,6 +47,7 @@ function search() {
     res_pos.innerHTML = ""
 
     const query = document.querySelector("#query")
+    const querystr = query.text.value
 
     //load_visualize()
     // Query
@@ -90,7 +91,7 @@ function search() {
             container.appendChild(result)
         })
         res_pos.appendChild(container)
-        new Hilitor("container").apply(query)
+        new Hilitor("container").apply(querystr)
     })
 }
 

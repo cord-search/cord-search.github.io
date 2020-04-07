@@ -10,7 +10,7 @@ const read_data = (question_data) => {
 
 const load_visualize2 = (dataToRead) => {
   mark = [];
-  let questionToSearch = document.getElementById("query").value;
+  let questionToSearch = document.getElementById("query").text.value;
   for (let i = 0; i < dataToRead.length; i++) {
     if (dataToRead[i].question === questionToSearch) {
       mark[0] = dataToRead[i].x;
@@ -262,7 +262,7 @@ const load_visualize2 = (dataToRead) => {
   }
   myChart.on("click", function (params) {
     let chartData = params.value[2];
-    document.getElementById("query").value = chartData;
+    document.getElementById("query").text.value = chartData;
     search();
   });
 };
