@@ -1,1 +1,3 @@
 CORD-19-research-challenge
+*.json
+*.js
