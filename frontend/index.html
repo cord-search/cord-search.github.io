@@ -5,20 +5,39 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="libs/hilitor.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
-
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css"/>
-    <meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui">
+    <script type="text/javascript" src="libs/echarts.min.js"></script>
+    <script type="text/javascript" src="scripts/visualize_data.js"></script>
+    <script type="text/javascript" src="covid_bow.js"></script>
+    <script type="text/javascript" src="covid_tfidf.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
+    <meta
+      name="viewport"
+      content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"
+    />
   </head>
   <body>
-    <header class = "top-box">
+    <header class="top-box">
       <h1>Cord Search</h1>
     </header>
 
     <main>
-      <input id="query" onkeypress="return search()" onchange="search()" placeholder="search text" class="input_search">
-      <section id="search">
-      </section>
+      <input
+        id="query"
+        onkeypress="return search()"
+        onchange="search()"
+        placeholder="search text"
+        class="input_search"
+      />
+      <section id="search"></section>
+      <div><div id="chart"></div></div>
+      <div class="select">
+        <label for="Domain">Choose Model to</label>
+        <select onchange="load_visualize()" id="Domain">
+          <option value="tfidf">TFIDF</option>
+          <option value="bow">BOW</option>
+        </select>
+      </div>
       <section id="result">
         <p id="nodata">NO DATA</p>
       </section>
