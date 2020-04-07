@@ -16,6 +16,7 @@ ignore =
     WPS332,
     WPS348,
     WPS352,
+    WPS404,
     WPS421,
     WPS430,
     WPS437,
