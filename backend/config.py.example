@@ -7,6 +7,10 @@ from pathlib import Path
 DATA_PATH = Path("../data/CORD-19-research-challenge")
 JSONS = DATA_PATH.glob("**/*/*.json")
 
-INDEX_NAME = "cord"
+IDX_FULL = "cordf"
+IDX_DETAIL = "cord"
+IDX_FT = "cordft"
+IDXS = (IDX_FULL, IDX_DETAIL, IDX_FT)
+
 RETURN_SIZE = 100
 DEFAULT_STR = ""
