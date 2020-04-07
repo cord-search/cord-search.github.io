@@ -26,13 +26,43 @@
     </header>
 
     <main>
-      <input
-        id="query"
-        onkeypress="return search()"
-        onchange="search()"
-        placeholder="search text"
-        class="input_search"
-      />
+      <form id="query">
+        <input
+          id="query-text"
+          name="text"
+          onkeypress="return search()"
+          onchange="search()"
+          placeholder="search text"
+          class="input_search"
+        />
+        <section>
+          <section>
+            <p>Abstract</p>
+            <input type="radio" name="idx" value="full-a" checked="checked" />
+          </section>
+          <section>
+            <p>Body Text</p>
+            <input type="radio" name="idx" value="full-b" />
+          </section>
+          <section>
+            <p>Paragraphs</p>
+            <input type="radio" name="idx" value="detail" />
+          </section>
+          <section>
+            <p>Figure & Table</p>
+            <input type="radio" name="idx" value="ft" />
+          </section>
+          <section>
+            <p>Title</p>
+            <input type="radio" name="idx" value="title" />
+          </section>
+          <section>
+            <p>Paper ID</p>
+            <input type="radio" name="idx" value="paper_id" />
+          </section>
+        </section>
+      </form>
+
       <section id="search"></section>
       <div><div id="chart"></div></div>
       <div class="select">

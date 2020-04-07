@@ -11,6 +11,40 @@ html {
   font-family: Optima;
 }
 
+#query {
+    display: flex;
+    flex-flow: column;
+}
+#query p {
+    padding: 10px 3px;
+    margin: 0;
+}
+#query > section {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+#query > section input {
+    box-shadow: none;
+    padding: 5px;
+    margin: 0;
+    width: 1.5rem;
+    height: 100%;
+}
+#query > section > section {
+    box-shadow: 0 0 5px #33333333;
+    margin: 3px 5px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    cursor: default;
+}
+#query > section > section:hover {
+    box-shadow: 0 0 10px #33333366;
+}
+
+
 body {
   display: flex;
   flex-flow: column;
@@ -33,6 +67,8 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
+
+
 
 .hide {
   display: none;
@@ -84,7 +120,7 @@ input:hover,
   box-shadow: 0 1px 3px #666666;
 }
 
-#query:hover {
+#query-text:hover {
   background-color: #f69d9d66;
 }
 
