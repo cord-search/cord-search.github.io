@@ -1,12 +1,11 @@
 let visual_data;
 let mark = [];
 const read_data = (question_data) => {
-  let needed_data = [];
+  visual_data = [];
   question_data.map((i) => {
     const d = [i.x, i.y, i.question, i.catagory];
-    needed_data.push(d);
+    visual_data.push(d);
   });
-  visual_data = needed_data;
 };
 
 const load_visualize2 = (dataToRead) => {
@@ -95,7 +94,19 @@ const load_visualize2 = (dataToRead) => {
       "maroon",
     ],
     legend: {
-      data: ["COVID", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      data: [
+        "COVID Data category",
+        "French literature?",
+        "Mask;AIR",
+        "Virus comparation",
+        "Sequences analysis",
+        "Diseases transmission",
+        "Public health",
+        "Cells experiments",
+        "Genome study",
+        "Influenza",
+        "Treatment",
+      ],
       top: "8%",
       right: "1%",
       orient: "vertical",
@@ -128,7 +139,7 @@ const load_visualize2 = (dataToRead) => {
     ],
     series: [
       {
-        name: "COVID",
+        name: "COVID Data category",
         type: "scatter",
         data: visual_data,
         symbol: "circle",
@@ -186,52 +197,52 @@ const load_visualize2 = (dataToRead) => {
         },
       },
       {
-        name: "0",
+        name: "French literature?",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "1",
+        name: "Mask;AIR",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "2",
+        name: "Virus comparation",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "3",
+        name: "Sequences analysis",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "4",
+        name: "Diseases transmission",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "5",
+        name: "Public health",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "6",
+        name: "Cells experiments",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "7",
+        name: "Genome study",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "8",
+        name: "Influenza",
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "9",
+        name: "Treatment",
         type: "scatter",
         symbol: "circle",
       },
@@ -258,10 +269,20 @@ const load_visualize2 = (dataToRead) => {
 
 const load_visualize = () => {
   if (document.getElementById("Domain").value === "tfidf") {
-    read_data(tfidf);
-    load_visualize2(tfidf);
+    axios
+      .get("http://45.19.182.21:8003/models/covid_tfidf_data.json")
+      .then((res) => {
+        const tfidf = res.data;
+        read_data(tfidf);
+        load_visualize2(tfidf);
+      });
   } else if (document.getElementById("Domain").value === "bow") {
-    read_data(bow);
-    load_visualize2(bow);
+    axios
+      .get("http://45.19.182.21:8003/models/covid_bow_data.json")
+      .then((res) => {
+        const bow = res.data;
+        read_data(bow);
+        load_visualize2(bow);
+      });
   }
 };
