@@ -98,8 +98,6 @@ async def index_figure_table_handle(
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
 ) -> UJSONResponse:
     """Handle figure and table query."""
-    docs = await search(IDX_FT, "ft_text", query, return_size)
-    print(docs)
     return await search(IDX_FT, "ft_text", query, return_size)
 
 
