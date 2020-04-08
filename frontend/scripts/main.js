@@ -102,6 +102,7 @@ window.onload = () => {
         Array.from(idxs).map(idx =>
             idx.addEventListener("click", _ => {
                 query.idx.value = idx.querySelector("input").value
+                search()
             })
         )
     })()
