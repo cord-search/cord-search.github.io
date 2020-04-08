@@ -82,6 +82,7 @@ main {
 #chart {
   height: 80vw;
   max-height: 660px;
+  min-height: 660px;
   margin: 10px 0;
   box-shadow: 0 0 5px #33333333;
 }
