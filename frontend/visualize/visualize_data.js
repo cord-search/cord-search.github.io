@@ -91,11 +91,10 @@ const load_visualize2 = (dataToRead) => {
       "#336666",
       "purple",
       "fuchsia",
-      "maroon",
+      "#A5A552",
     ],
     legend: {
       data: [
-        "COVID Data category",
         "French literature?",
         "Mask;AIR",
         "Virus comparation",
@@ -175,7 +174,7 @@ const load_visualize2 = (dataToRead) => {
                 color = "fuchsia";
                 break;
               case 9:
-                color = "maroon";
+                color = "#A5A552";
                 break;
             }
             return color;
