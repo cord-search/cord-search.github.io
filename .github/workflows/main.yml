@@ -24,7 +24,7 @@ jobs:
 
     - name: Build
       run: |
-        cp frontend/* .
+        cp -r frontend/* .
         sh dep.sh
 
     - name: Commit
@@ -38,5 +38,5 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        BRANCH: gh-pages
-        FOLDER: .
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
