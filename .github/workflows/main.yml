@@ -25,9 +25,17 @@ jobs:
     - name: Build
       run: |
         sh dep.sh
-      
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+
+    - name: Commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git checkout -b gh-pages
+        git add --all
+        git commit -am "Deploy on `date`."
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
         BRANCH: gh-pages
         FOLDER: .
