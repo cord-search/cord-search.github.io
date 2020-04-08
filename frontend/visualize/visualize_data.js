@@ -1,4 +1,5 @@
 let visual_data;
+let data_legend;
 let mark = [];
 const read_data = (question_data) => {
   visual_data = [];
@@ -94,18 +95,7 @@ const load_visualize2 = (dataToRead) => {
       "#A5A552",
     ],
     legend: {
-      data: [
-        "French literature?",
-        "Mask;AIR",
-        "Virus comparation",
-        "Sequences analysis",
-        "Diseases transmission",
-        "Public health",
-        "Cells experiments",
-        "Genome study",
-        "Influenza",
-        "Treatment",
-      ],
+      data: data_legend,
       top: "8%",
       right: "1%",
       orient: "vertical",
@@ -196,52 +186,52 @@ const load_visualize2 = (dataToRead) => {
         },
       },
       {
-        name: "French literature?",
+        name: data_legend[0],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Mask;AIR",
+        name: data_legend[1],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Virus comparation",
+        name: data_legend[2],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Sequences analysis",
+        name: data_legend[3],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Diseases transmission",
+        name: data_legend[4],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Public health",
+        name: data_legend[5],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Cells experiments",
+        name: data_legend[6],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Genome study",
+        name: data_legend[7],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Influenza",
+        name: data_legend[8],
         type: "scatter",
         symbol: "circle",
       },
       {
-        name: "Treatment",
+        name: data_legend[9],
         type: "scatter",
         symbol: "circle",
       },
@@ -269,6 +259,18 @@ const load_visualize2 = (dataToRead) => {
 const load_visualize = () => {
   if (document.getElementById("Domain").value === "tfidf") {
     loadProgressBar();
+    data_legend = [
+      "SARS and COVID-19",
+      "Influenza",
+      "PAST Research about COVID-19",
+      "Effect and analysis",
+      "Clinical Reasearch",
+      "Public health",
+      "Infection",
+      "Nation Action",
+      "Cells experiments",
+      "Novel study",
+    ];
     axios
       .get("http://45.19.182.21:8003/models/covid_tfidf_data.json")
       .then((res) => {
@@ -278,6 +280,18 @@ const load_visualize = () => {
       });
   } else if (document.getElementById("Domain").value === "bow") {
     loadProgressBar();
+    data_legend = [
+      "Public Health",
+      "Infection",
+      "Cells experiments",
+      "Influenza",
+      "Clinical Reasearch",
+      "Effect and analysis",
+      "SARS and COVID-19",
+      "Nation Action",
+      "Novel study",
+      "PAST Research about COVID-19",
+    ];
     axios
       .get("http://45.19.182.21:8003/models/covid_bow_data.json")
       .then((res) => {
