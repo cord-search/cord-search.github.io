@@ -50,10 +50,17 @@ from fastapi.responses import UJSONResponse
 from es_search import search
 
 # Config
-from config import IDX_DETAIL, IDX_FT, IDX_FULL, IDXS, MAX_RETURN_SIZE
+from config import (
+    DEFAULT_QUERY,
+    IDX_DETAIL,
+    IDX_FT,
+    IDX_FULL,
+    IDXS,
+    MAX_RETURN_SIZE
+)
 
 # Types
-from module import Docs
+from module import Docs, DocSOutWithFT
 
 ANY = "*"
 app = FastAPI()
@@ -69,7 +76,7 @@ app.add_middleware(
 @app.get("/index/full/", response_model=Docs)
 async def index_full_handle(
     key: str = Query("abstract", regex="^(abstract|body_text)$"),
-    query: str = "covid-19",
+    query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
 ) -> UJSONResponse:
     """Handle full text index query."""
@@ -78,16 +85,16 @@ async def index_full_handle(
 
 @app.get("/index/detail/", response_model=Docs)
 async def index_detail_handle(
-    query: str = "covid-19",
+    query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
 ) -> UJSONResponse:
     """Handle detail index query."""
     return await search(IDX_DETAIL, "text", query, return_size)
 
 
-@app.get("/index/ft/", response_model=Docs)
+@app.get("/index/ft/", response_model=DocSOutWithFT)
 async def index_figure_table_handle(
-    query: str = "covid-19",
+    query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
 ) -> UJSONResponse:
     """Handle figure and table query."""
@@ -98,7 +105,7 @@ async def index_figure_table_handle(
 async def index_title_paper_id_handle(
     index: str = Query(IDX_FULL, regex=f"^({'|'.join(IDXS)})$"),
     key: str = Query("title", regex=f"^(title|paper_id)$"),
-    query: str = "covid-19",
+    query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
 ) -> UJSONResponse:
     """Handle title and paper_id query."""

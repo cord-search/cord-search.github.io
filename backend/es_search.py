@@ -71,17 +71,17 @@ def _title(hit: DD) -> str:
 
 def build_doc(hit: DD, index: str, key: str) -> Union[DocSOut, DocSOutWithFT]:
     """Build doc."""
+    src = hit["_source"]
     if index in {IDX_DETAIL, IDX_FULL}:
         return DocSOut(
-            paper_id=_paper_id(hit),
-            title=_title(hit),
-            text=hit["_source"][key],
+            paper_id=_paper_id(hit), title=_title(hit), text=src[key],
         )
     return DocSOutWithFT(
         paper_id=_paper_id(hit),
         title=_title(hit),
-        text=hit["_source"][key],
-        name=hit["_source"]["ft_name"],
+        text=": ".join((src["ft_name"], src[key])),
+        raw_text=src[key],
+        name=src["ft_name"],
     )
 
 

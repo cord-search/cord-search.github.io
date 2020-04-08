@@ -81,6 +81,7 @@ class DocSOutWithFT(DocSOut):
     paper_id: str
     title: str
     text: str
+    raw_text: str
     name: str
 
 
