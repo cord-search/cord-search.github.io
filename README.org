@@ -21,7 +21,19 @@ Website: http://covid19papertable.ml/
 
 * Todo
 
-** TODO Figure on frontend
-** TODO Index abstract
-** TODO Index figures/tables text
+** DONE Figure on frontend
+CLOSED: [2020-04-08 Wed 12:07]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-08 Wed 12:07]
+:END:
+** DONE Index abstract
+CLOSED: [2020-04-08 Wed 12:07]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-08 Wed 12:07]
+:END:
+** DONE Index figures/tables text
+CLOSED: [2020-04-08 Wed 12:07]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-08 Wed 12:07]
+:END:
 ** TODO LOCATION
