@@ -58,9 +58,19 @@ const load_visualize2 = (dataToRead) => {
         borderWidth: 3,
       },
       feature: {
-        dataZoom: {},
+          dataZoom: {
+              title: {
+                  zoom: "area zooming",
+                  back: "restore area zooming"
+              }
+          },
         brush: {
-          type: ["rect", "polygon", "clear"],
+            type: ["rect", "polygon", "clear"],
+            title: {
+                rect: "Rectangle selection",
+                polygon: "Polygon selection",
+                clear: "Clear selection"
+            }
         },
       },
     },
