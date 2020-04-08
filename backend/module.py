@@ -78,9 +78,6 @@ class DocSOut(BaseModel):
 class DocSOutWithFT(DocSOut):
     """Document Simple Output Module with Figure and Table."""
 
-    paper_id: str
-    title: str
-    text: str
     raw_text: str
     name: str
 
@@ -100,4 +97,4 @@ class Docs(BaseModel):
     """Docs Module."""
 
     total: int
-    docs: List[Union[DocSOut, DocSOutWithFT, DocOut]]
+    docs: List[Union[DocOut, DocSOutWithFT, DocSOut]]
