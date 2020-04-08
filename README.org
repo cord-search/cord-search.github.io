@@ -17,6 +17,8 @@ Kaggle CORD-19-research-challenge
 
 https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge
 
+Website: http://covid19papertable.ml/
+
 * Todo
 
 ** TODO Figure on frontend
