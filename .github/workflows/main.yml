@@ -31,7 +31,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git checkout -b gh-pages
         git add --all
         git commit -am "Deploy on `date`."
 
