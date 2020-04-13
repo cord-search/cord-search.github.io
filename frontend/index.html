@@ -9,7 +9,10 @@
     <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
     <script type="text/javascript" src="libs/hilitor.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"
+    ></script>
     <script type="text/javascript" src="visualize/visualize_data.js"></script>
     <link
       rel="stylesheet"
@@ -19,12 +22,17 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163108460-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-163108460-1"
+    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-163108460-1');
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+      gtag("config", "UA-163108460-1")
     </script>
   </head>
   <body>
@@ -79,6 +87,9 @@
           <option value="tfidf">TFIDF</option>
           <option value="bow">BOW</option>
         </select>
+        <div class="paper_map">
+          <a href="./map/map.html" target="_blank"> Article on map</a>
+        </div>
       </div>
       <section id="result">
         <p id="nodata">NO DATA</p>
