@@ -1,9 +1,7 @@
-axios
-    .get("http://45.19.182.21:8003/models/covid_article_location.json")
-    .then(res => {
-        const geoData = res.data
-        load_map(geoData)
-    })
+axios.get("http://45.19.182.21:8003/models/covid_location-2.json").then(res => {
+    const geoData = res.data
+    load_map(geoData)
+})
 
 function load_map(geo_data) {
     console.log(geo_data)
@@ -121,7 +119,8 @@ function load_map(geo_data) {
         elementDiv1.setAttribute("href", link)
         elementDiv1.setAttribute("target", "_blank")
         var elementDiv2 = document.createElement("div")
-        setInnerText(elementDiv2, placeName)
+        place = "Place: " + placeName
+        setInnerText(elementDiv2, place)
         //elementDiv.innerText = info.att.text;
         setInnerText(elementDiv1, info)
         content.appendChild(elementDiv1)
