@@ -37,3 +37,10 @@ CLOSED: [2020-04-08 Wed 12:07]
 - State "DONE"       from "NEXT"       [2020-04-08 Wed 12:07]
 :END:
 ** TODO LOCATION
+** TODO Add publish_time, doi, url
+
+Waiting for Rebuild index
+
+** NEXT Clustering
+
+Almost done
