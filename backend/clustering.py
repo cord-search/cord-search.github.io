@@ -29,9 +29,9 @@ Excited without bugs::
     |  ___|______|______|______|______|______|____
 
 author   : Nasy https://nasy.moe
-date     : Apr  6, 2020
+date     : Apr 11, 2020
 email    : Nasy <nasyxx+python@gmail.com>
-filename : typ.py
+filename : clustering.py
 project  : backend
 license  : GPL-3.0+
 
@@ -41,72 +41,45 @@ Which to you shall seem probable, of every
   These happen'd accidents
                           -- The Tempest
 """
+# Standard Library
+from functools import lru_cache
 
 # Others
-from pydantic import BaseModel
+import numpy as np
+import ujson as json
+from nptyping import NDArray
+from sklearn.cluster import MiniBatchKMeans
+
+# Config
+from config import DATA
 
 # Types
-from typing import List, Union
+from typing import Dict, List, Union
+
+with (DATA / "scibert_embeddings.json").open() as f:
+    YS = list(map(lambda ele: ele["title"], json.load(f)))
+
+XS = np.loadtxt((DATA / "tsne.txt").as_posix())
 
 
-class Ref(BaseModel):
-    """Ref module."""
-
-    name: str
-    text: str
+def cluster(n: int, tsne_data: NDArray[float]) -> NDArray[int]:
+    """Clustering data to `n' cluster."""
+    return MiniBatchKMeans(n).fit_predict(tsne_data)
 
 
-class Doc(BaseModel):
-    """Document Module."""
-
-    paper_id: str
-    title: str
-    abstract: List[str]
-    body_text: List[str]
-    figure: List[Ref]
-    table: List[Ref]
-
-
-class DocSOut(BaseModel):
-    """Document Simple Output Module."""
-
-    paper_id: str
-    title: str
-    text: str
-
-
-class DocSOutWithFT(DocSOut):
-    """Document Simple Output Module with Figure and Table."""
-
-    raw_text: str
-    name: str
-
-
-class DocOut(BaseModel):
-    """Document Complete Output Module."""
-
-    paper_id: str
-    title: str
-    abstract: str
-    body_text: str
-    figure: List[Ref]
-    table: List[Ref]
-
-
-class Docs(BaseModel):
-    """Docs Module."""
-
-    total: int
-    docs: List[Union[DocOut, DocSOutWithFT, DocSOut]]
-
-
-class Point(BaseModel):
-    """Point Module."""
-
-    question: str
-    x: float
-    y: float
-    catagory: int
-
-
-Points = List[Point]
+@lru_cache(maxsize=2 << 24)
+def build_json(n: int) -> List[Dict[str, Union[str, float]]]:
+    """Build `n' clusters json."""
+    return list(
+        map(
+            lambda y, xy, x: {
+                "question": y,
+                "x": xy[0],
+                "y": xy[1],
+                "catagory": x,
+            },
+            YS,
+            XS,
+            cluster(n, XS),
+        )
+    )

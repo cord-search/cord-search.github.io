@@ -4,7 +4,8 @@
 # Standard Library
 from pathlib import Path
 
-DATA_PATH = Path("../data/CORD-19-research-challenge")
+DATA = Path("../data")
+DATA_PATH = DATA / "CORD-19-research-challenge"
 JSONS = DATA_PATH.glob("**/*/*.json")
 
 IDX_FULL = "cordf"

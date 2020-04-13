@@ -42,11 +42,12 @@ Which to you shall seem probable, of every
                           -- The Tempest
 """
 # Http
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Path, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import UJSONResponse
 
 # Others
+from clustering import build_json
 from es_search import search
 
 # Config
@@ -60,7 +61,7 @@ from config import (
 )
 
 # Types
-from module import Docs, DocSOutWithFT
+from module import Docs, Points
 
 ANY = "*"
 app = FastAPI()
@@ -110,3 +111,9 @@ async def index_title_paper_id_handle(
 ) -> UJSONResponse:
     """Handle title and paper_id query."""
     return await search(index, key, query, return_size)
+
+
+@app.get("/cluster/{n}", response_model=Points)
+async def cluster_data_handle(n: int = Path(10, gt=0)) -> UJSONResponse:
+    """Handle cluster query."""
+    return build_json(n > 0 and n or 10)
