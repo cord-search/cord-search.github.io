@@ -103,12 +103,12 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
         "bert": np.array(
             list(map(lambda ele: ele["scibert"], _bert_data))
         ).reshape((SIZE, -1)),
-        "tfidf": np.loadtxt(((DATA / "n_tfidf_xy").as_posix())),
+        "tfidf": np.loadtxt(((DATA / "n_tfidf_xs").as_posix())),
     }
     print("loading xy")
     XY = {  # noqa: WPS407
         "bert": np.loadtxt((DATA / "tsne.txt").as_posix()),
-        "tfidf": np.array(list(map(lambda xy: [xy[0], xy[1]], XS["tfidf"]))),
+        "tfidf": np.loadtxt(((DATA / "n_tfidf_xy").as_posix())),
     }
     print("Done")
 
