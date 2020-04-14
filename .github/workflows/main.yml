@@ -43,10 +43,10 @@ jobs:
         branch: gh-pages
         force: true
 
-    - name: Rest to gh-pages
+    - name: Push org web
       run: |
         git clone https://github.com/nasyxx/cord_search.git
         cd cord_search
         git checkout gh-pages
         git remote add web https://nasyxx:${{ secrets.WEB_TOKEN }}@github.com/cord-search/cord-search.github.io
-        git push --force web gh-pages:gh-pages
+        git push --force web gh-pages:master
