@@ -97,8 +97,8 @@ main {
 }
 
 #chart {
-    height: 80vw;
-    max-height: 660px;
+    height: 75vw;
+    max-height: 540px;
     margin: 10px 0;
     box-shadow: 0 0 5px #33333333;
     display: flex;
