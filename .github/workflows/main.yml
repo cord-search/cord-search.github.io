@@ -28,6 +28,7 @@ jobs:
         cp -r frontend/* .
         rm -rf frontend
         sh dep.sh
+        sh dep2.sh
 
     - name: Commit
       run: |
