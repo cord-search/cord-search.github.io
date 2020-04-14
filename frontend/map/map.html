@@ -27,6 +27,7 @@
         font-size: 1rem;
       }
       .map {
+        margin-top: 50px;
         width: 100%;
         height: 500px;
       }
@@ -41,8 +42,8 @@
         bottom: 12px;
         left: -50px;
         word-wrap: break-word;
-        width: 13em;
-        height: 50px;
+        width: 20em;
+        height: 200px;
         overflow: auto;
       }
 
@@ -90,6 +91,12 @@
       #popup-content .markerText {
         background-color: #f0f0f0;
         padding: 6px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #popup-content a {
+        font-weight: bold;
+        color: green;
       }
 
       /* #popup-content  {
@@ -104,8 +111,11 @@
         can click it and then it will popup to show you article link(you can use
         mouse scrol down if this point contain multiple articles). Suggesting
         using your Mouse or Touchpad zooming in to get more specific location
-        because it using cluster map, with you room in it will show you more
-        accurate number of article realate specific area.
+        because it using cluster map, with you zoom in map, it will show you
+        more accurate number of article realate specific area. Beside for the
+        very top point, popup may not display completely,fortunately,you can use
+        the mouse or trackpad to zoom to this area and then drag the point to
+        the center of the map with your mouse or touchpad.
       </div>
     </div>
     <div id="js-map" class="map">
