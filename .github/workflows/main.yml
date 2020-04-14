@@ -24,7 +24,9 @@ jobs:
 
     - name: Build
       run: |
+        rm -rf backend data README.org
         cp -r frontend/* .
+        rm -rf frontend
         sh dep.sh
 
     - name: Commit
