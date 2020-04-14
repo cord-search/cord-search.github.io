@@ -41,6 +41,16 @@ CLOSED: [2020-04-08 Wed 12:07]
 
 Waiting for Rebuild index
 
-** NEXT Clustering
+** DONE Clustering
+CLOSED: [2020-04-14 Tue 14:23]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-14 Tue 14:23]
+:END:
 
-Almost done
+** NEXT Frontend update
+
+** DONE Ignore Previous Keywords
+CLOSED: [2020-04-14 Tue 14:24]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-14 Tue 14:24]
+:END:

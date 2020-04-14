@@ -59,8 +59,11 @@ from config import DATA, DATA_PATH
 
 # Types
 from module import Map, Point
+from typing import Counter as CounterT
+from typing import List, Tuple
 
 SIZE = 47140
+PKWS = set()  # type: Set[str]
 
 with (DATA / "scibert_embeddings.json").open() as _f, (
     DATA / "n_tfidf_ys"
@@ -127,9 +130,20 @@ def cluster(n: int, model: str) -> NDArray[int]:
     return MiniBatchKMeans(n).fit_predict(XS[model])
 
 
+def count_it(c: CounterT, kwc: int) -> List[Tuple[str, int]]:
+    """Count from Counter."""
+    for kw in PKWS:
+        c[kw] = 0
+    mc = c.most_common(kwc)
+    for k, _ in mc:
+        PKWS.add(k)
+    return mc
+
+
 @lru_cache(maxsize=2 << 24)
 def build_map(model: str, n: int, kwc: int) -> Map:
     """Build `n' clusters `Map'."""
+    PKWS.clear()
     fited = cluster(n, model)
     return Map(
         cats=list(map("c-{}".format, range(n))),
@@ -138,18 +152,22 @@ def build_map(model: str, n: int, kwc: int) -> Map:
                 lambda c: ", ".join(
                     map(
                         lambda x: x[0],
-                        Counter(
-                            chain.from_iterable(
-                                map(
-                                    lambda ie: model == "bert"
-                                    and SS_BERT[YS[model][ie[0]]]
-                                    or SS_TFIDF[ie[0]],
-                                    filter(
-                                        lambda ie: ie[1] == c, enumerate(fited)
+                        count_it(
+                            Counter(
+                                chain.from_iterable(
+                                    map(
+                                        lambda ie: model == "bert"
+                                        and SS_BERT[YS[model][ie[0]]]
+                                        or SS_TFIDF[ie[0]],
+                                        filter(
+                                            lambda ie: ie[1] == c,
+                                            enumerate(fited),
+                                        ),
                                     ),
-                                ),
-                            )
-                        ).most_common(kwc),
+                                )
+                            ),
+                            kwc,
+                        ),
                     )
                 ),
                 range(n),
