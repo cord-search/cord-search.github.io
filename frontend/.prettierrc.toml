@@ -1,5 +1,0 @@
-tabWidth = 4
-semi = false
-singleQuote = false
-arrowParens = "avoid"
-overrides = [{files = "*.html", options = {tabWidth = 2}}]

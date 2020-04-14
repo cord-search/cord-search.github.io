@@ -1,4 +1,0 @@
-Data url:
-https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge
-
-Download and extract them here in ~CORD-19-research-challenge/~

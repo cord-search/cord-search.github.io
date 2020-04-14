@@ -10,31 +10,31 @@ function select_idx(query) {
     const querystr = query.text.value
     switch (query.idx.value) {
         case "full-a":
-            return build_query("http://localhost:8001/index/full", {
+            return build_query("http://45.19.182.21:8001/index/full", {
                 key: "abstract",
                 query: querystr,
             })
         case "full-b":
-            return build_query("http://localhost:8001/index/full", {
+            return build_query("http://45.19.182.21:8001/index/full", {
                 key: "body_text",
                 query: querystr,
             })
         case "detail":
-            return build_query("http://localhost:8001/index/detail", {
+            return build_query("http://45.19.182.21:8001/index/detail", {
                 query: querystr,
             })
         case "ft":
-            return build_query("http://localhost:8001/index/ft", {
+            return build_query("http://45.19.182.21:8001/index/ft", {
                 query: querystr,
             })
         case "title":
-            return build_query("http://localhost:8001/index/tp", {
+            return build_query("http://45.19.182.21:8001/index/tp", {
                 index: "cordf",
                 key: "title",
                 query: querystr,
             })
         case "paper_id":
-            return build_query("http://localhost:8001/index/tp", {
+            return build_query("http://45.19.182.21:8001/index/tp", {
                 index: "cordf",
                 key: "paper_id",
                 query: querystr,
