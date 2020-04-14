@@ -181,6 +181,7 @@ const load_visualize2 = (dataToRead) => {
 
 const add_kwds = (cats, kwds) => {
     const kwds_e = document.querySelector("#keywords")
+    kwds_e.innerHTML = ""
     const kt = document.createElement("p")
     kt.innerText = "Keywords order by frequency"
     kwds_e.appendChild(kt)
