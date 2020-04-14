@@ -201,12 +201,11 @@ button {
 
 #mm {
     font-size: 0.8rem;
-    min-height: 2.5rem;
+    padding: 10px;
 }
 #cc {
     text-align: center;
     max-width: 4rem;
-    min-height: 2.5rem;
 }
 
 #keywords {
