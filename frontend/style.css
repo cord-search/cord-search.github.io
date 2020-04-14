@@ -158,8 +158,23 @@ input:hover,
 .select > section > * {
     margin: 10px 5px;
 }
-.select > section > input:nth-last-child() {
-    max-width: 60px;
+.select > .link {
+    background: white;
+    box-shadow: 0 1px 3px #66666666;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    height: 12px;
+    padding: 10px;
+}
+.select a {
+    text-decoration: none;
+    color: #333;
+    font-family: Optima;
+}
+.select > .link:hover {
+    background-color: #f69d9d;
+    box-shadow: 0 1px 3px #666666;
 }
 
 article {
