@@ -49,4 +49,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: master
         force: true
-        repository: https://github.com/cord-search/cord-search.github.io.git
+        repository: cord-search/cord-search.github.io.git
