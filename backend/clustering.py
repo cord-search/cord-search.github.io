@@ -94,8 +94,10 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
     )
     SS_TFIDF = list(
         map(
-            lambda ss: filter(
-                lambda w: bool(w) and w in SW, re.split(r"[^a-z]+", ss)
+            lambda ss: list(
+                filter(
+                    lambda w: bool(w) and w not in SW, re.split(r"[^a-z]+", ss)
+                )
             ),
             _ss.read().splitlines(),
         )
