@@ -8,9 +8,27 @@
     <script src="map.js"></script>
     <link rel="stylesheet" href="v6.1.1-dist/ol.css" />
     <style type="text/css">
+      body {
+        display: grid;
+        grid-gap: 20px;
+        justify-items: center;
+      }
+      .header {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        margin-top: 50px;
+      }
+      .header div {
+        /* justify-self: center; */
+        width: 800px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+      }
       .map {
         width: 100%;
-        height: 1300px;
+        height: 500px;
       }
       .ol-popup {
         position: absolute;
@@ -24,7 +42,8 @@
         left: -50px;
         word-wrap: break-word;
         width: 13em;
-        height: auto;
+        height: 50px;
+        overflow: auto;
       }
 
       .ol-popup:after,
@@ -38,19 +57,19 @@
         pointer-events: none;
       }
 
-      .ol-popup:after {
-        border-top-color: white;
-        border-width: 10px;
-        left: 48px;
-        margin-left: -10px;
-      }
+      /* .ol-popup:after {
+              border-top-color: white;
+              border-width: 10px;
+              left: 48px;
+              margin-left: -10px;
+            }
 
-      .ol-popup:before {
-        border-top-color: #cccccc;
-        border-width: 11px;
-        left: 48px;
-        margin-left: -11px;
-      }
+            .ol-popup:before {
+              border-top-color: #cccccc;
+              border-width: 11px;
+              left: 48px;
+              margin-left: -11px;
+            } */
 
       .ol-popup-closer {
         text-decoration: none;
@@ -68,13 +87,27 @@
       #popup-content {
         font-size: 14px;
       }
-
-      #popup-content .markerInfo {
-        font-weight: bold;
+      #popup-content .markerText {
+        background-color: #f0f0f0;
+        padding: 6px;
       }
+
+      /* #popup-content  {
+              font-weight: bold;
+            } */
     </style>
   </head>
   <body>
+    <div class="header">
+      <div>
+        Tutorial: Each point means the number of article relate this area ,you
+        can click it and then it will popup to show you article link(you can use
+        mouse scrol down if this point contain multiple articles). Suggesting
+        using your Mouse or Touchpad zooming in to get more specific location
+        because it using cluster map, with you room in it will show you more
+        accurate number of article realate specific area.
+      </div>
+    </div>
     <div id="js-map" class="map">
       <!-- Popup -->
       <div id="popup" class="ol-popup">
