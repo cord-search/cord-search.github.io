@@ -44,10 +44,11 @@ Which to you shall seem probable, of every
 # Http
 from fastapi import FastAPI, Path, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import UJSONResponse
 
 # Others
-from clustering import build_json
+from clustering import build_map
 from es_search import search
 
 # Config
@@ -61,7 +62,7 @@ from config import (
 )
 
 # Types
-from module import Docs, Points
+from module import Docs, Map
 
 ANY = "*"
 app = FastAPI()
@@ -72,6 +73,7 @@ app.add_middleware(
     allow_methods=[ANY],
     allow_headers=[ANY],
 )
+app.add_middleware(GZipMiddleware, minimum_size=200)
 
 
 @app.get("/index/full/", response_model=Docs)
@@ -113,7 +115,11 @@ async def index_title_paper_id_handle(
     return await search(index, key, query, return_size)
 
 
-@app.get("/cluster/{n}", response_model=Points)
-async def cluster_data_handle(n: int = Path(10, gt=0)) -> UJSONResponse:
+@app.get("/model/", response_model=Map)
+async def model_handle(
+    model: str = Query("bert", regex="(bert|tfidf)"),
+    n: int = Query(10, gt=0),
+    kwc: int = Query(15, ge=0),
+) -> UJSONResponse:
     """Handle cluster query."""
-    return build_json(n > 0 and n or 10)
+    return build_map(model, n > 0 and n or 10, kwc < 0 and 15 or kwc)

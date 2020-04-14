@@ -109,4 +109,9 @@ class Point(BaseModel):
     catagory: int
 
 
-Points = List[Point]
+class Map(BaseModel):
+    """Map Module."""
+
+    cats: List[str]
+    kws: List[str]
+    points: List[Point]
