@@ -152,6 +152,9 @@ input:hover,
 .select > section > * {
     margin: 10px 5px;
 }
+.select > section > input:nth-last-child() {
+    max-width: 60px;
+}
 
 article {
     display: flex;
@@ -269,9 +272,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    /*padding: 0px;*/
-    /*margin: 0 ;*/
-    /*box-shadow: none;*/
 }
 
 #download {
