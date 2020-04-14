@@ -45,7 +45,7 @@ p {
     box-shadow: 0 0 5px #33333333;
     margin: 3px 5px;
     display: flex;
-    flex-flow: row;
+    flex-flow: row nowrap;
     justify-content: center;
     cursor: default;
 }
