@@ -46,7 +46,7 @@ jobs:
     - name: Push org
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.WEB }}
         branch: master
         force: true
         repository: cord-search/cord-search.github.io
