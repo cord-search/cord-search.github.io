@@ -48,9 +48,14 @@ p {
     flex-flow: row nowrap;
     justify-content: center;
     cursor: default;
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 #query > section > section:hover {
     box-shadow: 0 0 10px #33333366;
+}
+#query > section > section > * {
+    flex-shrink: 0;
 }
 
 
@@ -141,12 +146,13 @@ input:hover,
 
 .select {
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
+    overflow-x: scroll;
 }
 .select > section {
     margin: 5px;
     display: flex;
-    flex-flow: row;
+    flex-flow: row nowrap;
     align-items: center;
 }
 .select > section > * {
