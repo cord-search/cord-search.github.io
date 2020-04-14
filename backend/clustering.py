@@ -92,7 +92,14 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
             DictReader(_g),
         )
     )
-    SS_TFIDF = _ss.read().splitlines()
+    SS_TFIDF = list(
+        map(
+            lambda ss: filter(
+                lambda w: bool(w) and w in SW, re.split(r"[^a-z]+", ss)
+            ),
+            _ss.read().splitlines(),
+        )
+    )
     print("loading ys")
     YS = {  # noqa: WPS407
         "bert": list(map(lambda ele: ele["title"], _bert_data)),
