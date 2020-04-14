@@ -6,7 +6,11 @@
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="map.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css"
+      type="text/css"
+    />
     <style type="text/css">
       body {
         display: grid;
@@ -47,30 +51,31 @@
         overflow: auto;
       }
 
-      .ol-popup:after,
-      .ol-popup:before {
+      /* .ol-popup::after,
+      .ol-popup::before {
         top: 100%;
+
         border: solid transparent;
         content: " ";
-        height: 0;
+        height: 5px;
         width: 0;
         position: absolute;
         pointer-events: none;
-      }
+      } */
 
-      .ol-popup:after {
+      /* .ol-popup::after {
         border-top-color: white;
         border-width: 10px;
         left: 48px;
         margin-left: -10px;
-      }
+      } */
 
-      .ol-popup:before {
+      /* .ol-popup::before {
         border-top-color: #cccccc;
         border-width: 11px;
         left: 48px;
         margin-left: -11px;
-      }
+      } */
 
       .ol-popup-closer {
         text-decoration: none;
@@ -79,7 +84,7 @@
         right: 8px;
       }
 
-      .ol-popup-closer:after {
+      .ol-popup-closer::after {
         content: "✖";
         height: 30px;
         padding: 12px;
@@ -91,13 +96,17 @@
       #popup-content .markerText {
         background-color: #f0f0f0;
         padding: 6px;
-        font-weight: bold;
+        margin: 10px;
+        /* font-weight: bold; */
         font-family: Arial, Helvetica, sans-serif;
+        border-radius: 0.3rem;
       }
-      #popup-content a {
-        font-weight: bold;
-        color: green;
+      /* .markerText > div {
+        margin: 5px;
       }
+      .markerText a {
+        margin: 5px;
+      } */
 
       /* #popup-content  {
               font-weight: bold;
@@ -107,7 +116,13 @@
   <body>
     <div class="header">
       <div>
-        <p>Note: All the data get from Kaggle:https://www.kaggle.com</p>
+        <p>
+          Note: The data gets from Kaggle:<a
+            href="https://www.kaggle.com"
+            target="_blank"
+            >https://www.kaggle.com</a
+          >
+        </p>
         Tutorial: Each point means the number of article relate this area ,you
         can click it and then it will popup to show you article link(you can use
         mouse scrol down if this point contain multiple articles). Suggesting
