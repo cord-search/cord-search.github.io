@@ -1,3 +1,5 @@
 CORD-19-research-challenge
 *.json
 *.js
+n_tfidf_*
+tsne.txt
