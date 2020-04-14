@@ -17,7 +17,9 @@ Kaggle CORD-19-research-challenge
 
 https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge
 
-Website: http://covid19papertable.ml/
+Website: http://45.19.182.21:8002/
+
+Api Doc: http://45.19.182.21:8001/docs
 
 * Todo
 
@@ -47,7 +49,11 @@ CLOSED: [2020-04-14 Tue 14:23]
 - State "DONE"       from "NEXT"       [2020-04-14 Tue 14:23]
 :END:
 
-** NEXT Frontend update
+** DONE Frontend update
+CLOSED: [2020-04-14 Tue 17:10]
+:LOGBOOK:
+- State "DONE"       from "NEXT"       [2020-04-14 Tue 17:10]
+:END:
 
 ** DONE Ignore Previous Keywords
 CLOSED: [2020-04-14 Tue 14:24]
