@@ -32,6 +32,7 @@ p {
     flex-flow: row;
     justify-content: center;
     margin-top: 5px;
+    overflow-x: scroll;
 }
 #query > section input {
     box-shadow: none;
@@ -93,7 +94,6 @@ main {
 #chart {
     height: 80vw;
     max-height: 660px;
-    min-height: 660px;
     margin: 10px 0;
     box-shadow: 0 0 5px #33333333;
     display: flex;
@@ -180,6 +180,10 @@ button {
 
 #mm {
     font-size: 0.8rem;
+    min-height: 2.5rem;
+}
+#cc {
+    max-width: 2.5rem;
     min-height: 2.5rem;
 }
 
