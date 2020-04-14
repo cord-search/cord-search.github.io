@@ -72,14 +72,20 @@
       </form>
 
       <section id="search"></section>
-      <div><div id="chart"></div></div>
-      <div class="select">
-        <label for="Domain">Choose Model to</label>
-        <select onchange="load_visualize()" id="Domain">
+      <div><div id="chart"><p>Loading</p></div></div>
+      <section id="model">
+       <div class="select">
+        <label for="mm">Choose Model</label>
+        <select onchange="load_visualize()" id="mm">
+          <option value="bert">BERT</option>
           <option value="tfidf">TFIDF</option>
-          <option value="bow">BOW</option>
         </select>
-      </div>
+        <label for="cc">Choose cluster nums</label>
+        <input type="number" min="1" id="cc" value="8" onchange="load_visualize()">
+       </div>
+       <div id="keywords">
+       </div>
+      </section>
       <section id="result">
         <p id="nodata">NO DATA</p>
       </section>

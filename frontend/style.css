@@ -88,6 +88,9 @@ main {
   min-height: 660px;
   margin: 10px 0;
   box-shadow: 0 0 5px #33333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #chat:hover {
   box-shadow: 0 0 10px #33333366;
@@ -136,6 +139,7 @@ article {
 
 section {
   display: flex;
+  flex-flow: column;
 }
 
 section.bb {
@@ -242,10 +246,7 @@ button {
   /*margin: 0 ;*/
   /*box-shadow: none;*/
 }
-#Domain {
-  margin-left: 15px;
-  padding-top: 4px;
-}
+
 #download {
   margin-left: 15px;
   padding-top: 4px;
@@ -373,12 +374,6 @@ button {
   text-shadow: 0 0 10px #5b8c5a;
 }
 
-#chart {
-  height: 80vw;
-  max-height: 660px;
-  margin: 10px 0;
-  box-shadow: 0 0 5px #33333333;
-}
 .tool_div {
   white-space: normal;
   word-wrap: break-word;
