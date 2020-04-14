@@ -39,7 +39,6 @@ p {
     padding: 5px;
     margin: 0;
     width: 1.5rem;
-    height: 100%;
 }
 #query > section > section {
     box-shadow: 0 0 5px #33333333;
@@ -50,7 +49,7 @@ p {
     cursor: default;
     flex-grow: 1;
     flex-shrink: 0;
-    max-height: 2.5rem;
+    align-items: center;
 }
 #query > section > section:hover {
     box-shadow: 0 0 10px #33333366;
