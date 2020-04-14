@@ -5,7 +5,7 @@ const read_data = (question_data) => {
     visual_data = [];
     question_data.map((i) => {
         const d = [i.x, i.y, i.question, i.catagory];
-        visual_data.push({value: d, symbolSize: 5});
+        visual_data.push({ value: d, symbolSize: 5 });
     });
 };
 
@@ -21,7 +21,7 @@ const load_visualize2 = (dataToRead) => {
     }
     console.log(mark);
 
-    const colors = data_legend.map(_ => '#'+Math.random().toString(16).substr(-6))
+    const colors = data_legend.map(_ => '#' + Math.random().toString(16).substr(-6))
 
     let option = {
         title: {
@@ -151,59 +151,14 @@ const load_visualize2 = (dataToRead) => {
                     },
                     symbolSize: 30,
                 },
-            },
-            {
-                name: data_legend[0],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[1],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[2],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[3],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[4],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[5],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[6],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[7],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[8],
-                type: "scatter",
-                symbol: "circle",
-            },
-            {
-                name: data_legend[9],
-                type: "scatter",
-                symbol: "circle",
-            },
+            }
         ],
     };
+    data_legend.map(legend => option.series.push({
+        name: legend,
+        type: "scatter",
+        symbol: "circle",
+    }))
 
     const dom = document.getElementById("chart");
     const domParent = dom.parentNode;
@@ -227,7 +182,7 @@ const load_visualize2 = (dataToRead) => {
 const add_kwds = (cats, kwds) => {
     const kwds_e = document.querySelector("#keywords")
     const kt = document.createElement("p")
-    kt.innerText = "Keywords"
+    kt.innerText = "Keywords order by frequency"
     kwds_e.appendChild(kt)
     kwds.map((kwd, idx) => {
         const p = document.createElement("p")
@@ -238,7 +193,9 @@ const add_kwds = (cats, kwds) => {
 
 const load_visualize = () => {
     const dom = document.querySelector("#chart")
+    const kwds_e = document.querySelector("#keywords")
     dom.innerHTML = "<p>Loading</p>"
+    kwds_e.innerHTML = ""
     loadProgressBar()
     axios
         .get("http://localhost:8001/model/",
