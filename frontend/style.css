@@ -76,8 +76,16 @@ body {
     box-shadow: 0 0 5px 0 black;
     background: white;
 }
+
 h1 {
     font-family: cursive;
+}
+h1 > a {
+    text-decoration: none;
+    color: black;
+}
+h1 > a:hover {
+    text-decoration: underline;
 }
 
 h3 {
