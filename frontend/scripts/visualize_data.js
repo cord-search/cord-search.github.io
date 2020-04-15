@@ -1,27 +1,29 @@
-let visual_data;
-let data_legend;
-let mark = [];
-const read_data = (question_data) => {
-    visual_data = [];
-    question_data.map((i) => {
-        const d = [i.x, i.y, i.question, i.catagory];
-        visual_data.push({ value: d, symbolSize: 5 });
-    });
-};
+let visual_data
+let data_legend
+let mark = []
+const read_data = question_data => {
+    visual_data = []
+    question_data.map(i => {
+        const d = [i.x, i.y, i.question, i.catagory]
+        visual_data.push({ value: d, symbolSize: 5 })
+    })
+}
 
-const load_visualize2 = (dataToRead) => {
-    mark = [];
-    let questionToSearch = document.getElementById("query").text.value;
+const load_visualize2 = dataToRead => {
+    mark = []
+    let questionToSearch = document.getElementById("query").text.value
     for (let i = 0; i < dataToRead.length; i++) {
         if (dataToRead[i].question === questionToSearch) {
-            mark[0] = dataToRead[i].x;
-            mark[1] = dataToRead[i].y;
-            break;
+            mark[0] = dataToRead[i].x
+            mark[1] = dataToRead[i].y
+            break
         }
     }
-    console.log(mark);
+    console.log(mark)
 
-    const colors = data_legend.map(_ => '#' + Math.random().toString(16).substr(-6))
+    const colors = data_legend.map(
+        _ => "#" + Math.random().toString(16).substr(-6)
+    )
 
     let option = {
         title: {
@@ -33,7 +35,7 @@ const load_visualize2 = (dataToRead) => {
         tooltip: {
             // trigger: 'axis',
             showDelay: 0,
-            formatter: function(params) {
+            formatter: function (params) {
                 return (
                     '<div class="tool_div">' +
                     params.value[2] +
@@ -41,7 +43,7 @@ const load_visualize2 = (dataToRead) => {
                     "catagory: " +
                     params.value[3] +
                     "</div>"
-                );
+                )
             },
 
             axisPointer: {
@@ -64,17 +66,17 @@ const load_visualize2 = (dataToRead) => {
                 dataZoom: {
                     title: {
                         zoom: "area zooming",
-                        back: "restore area zooming"
-                    }
+                        back: "restore area zooming",
+                    },
                 },
-                brush: {
-                    type: ["rect", "polygon", "clear"],
-                    title: {
-                        rect: "Rectangle selection",
-                        polygon: "Polygon selection",
-                        clear: "Clear selection"
-                    }
-                },
+                // brush: {
+                //     type: ["rect", "polygon", "clear"],
+                //     title: {
+                //         rect: "Rectangle selection",
+                //         polygon: "Polygon selection",
+                //         clear: "Clear selection",
+                //     },
+                // },
             },
         },
         brush: {},
@@ -95,6 +97,7 @@ const load_visualize2 = (dataToRead) => {
         ],
         legend: {
             data: data_legend,
+            selectedMode: false,
             top: "8%",
             right: "1%",
             orient: "vertical",
@@ -133,7 +136,7 @@ const load_visualize2 = (dataToRead) => {
                 data: visual_data,
                 symbol: "circle",
                 itemStyle: {
-                    color: (params) => {
+                    color: params => {
                         return colors[parseInt(params.value[3])]
                     },
                 },
@@ -151,33 +154,35 @@ const load_visualize2 = (dataToRead) => {
                     },
                     symbolSize: 30,
                 },
-            }
+            },
         ],
-    };
-    data_legend.map(legend => option.series.push({
-        name: legend,
-        type: "scatter",
-        symbol: "circle",
-    }))
+    }
+    data_legend.map(legend =>
+        option.series.push({
+            name: legend,
+            type: "scatter",
+            symbol: "circle",
+        })
+    )
 
-    const dom = document.getElementById("chart");
-    const domParent = dom.parentNode;
-    domParent.removeChild(dom);
-    const newChart = document.createElement("div");
-    domParent.appendChild(newChart);
-    newChart.id = "chart";
-    const myChart = echarts.init(newChart);
+    const dom = document.getElementById("chart")
+    const domParent = dom.parentNode
+    domParent.removeChild(dom)
+    const newChart = document.createElement("div")
+    domParent.appendChild(newChart)
+    newChart.id = "chart"
+    const myChart = echarts.init(newChart)
     console.log(option)
 
     if (option && typeof option === "object") {
-        myChart.setOption(option, true);
+        myChart.setOption(option, true)
     }
-    myChart.on("click", function(params) {
-        let chartData = params.value[2];
-        document.getElementById("query").text.value = chartData;
-        search();
-    });
-};
+    myChart.on("click", function (params) {
+        let chartData = params.value[2]
+        document.getElementById("query").text.value = chartData
+        search()
+    })
+}
 
 const add_kwds = (cats, kwds) => {
     const kwds_e = document.querySelector("#keywords")
@@ -199,19 +204,16 @@ const load_visualize = () => {
     kwds_e.innerHTML = ""
     loadProgressBar()
     axios
-        .get("http://localhost:8001/model",
-            {
-                params:
-                {
-                    n: document.querySelector("#cc").value,
-                    model: document.querySelector("#mm").value
-                }
-            })
+        .get("http://localhost:8001/model", {
+            params: {
+                n: document.querySelector("#cc").value,
+                model: document.querySelector("#mm").value,
+            },
+        })
         .then(res => {
             data_legend = res.data.cats
             add_kwds(data_legend, res.data.kws)
             read_data(res.data.points)
             load_visualize2(res.data.points)
-        }
-        )
-};
+        })
+}
