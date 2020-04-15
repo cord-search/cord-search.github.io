@@ -1,1 +1,3 @@
-sed -i "s/\.\//cord_search\//g" index.html
+git reset --hard
+git pull
+sh dep.sh
