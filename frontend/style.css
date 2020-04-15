@@ -122,7 +122,7 @@ main {
 
 #chart {
     height: 75vw;
-    max-height: 480px;
+    max-height: 540px;
     margin: 10px;
     box-shadow: 0 0 5px #33333333;
     display: flex;
