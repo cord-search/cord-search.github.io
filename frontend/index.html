@@ -4,10 +4,13 @@
     <meta
       name="viewport"
       content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"
-      />
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"
+    ></script>
     <script type="text/javascript" src="./libs/hilitor.js"></script>
     <script type="text/javascript" src="./scripts/main.js"></script>
     <script type="text/javascript" src="./scripts/visualize_data.js"></script>
@@ -15,27 +18,46 @@
       rel="stylesheet"
       type="text/css"
       href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css"
-      />
+    />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163108460-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-163108460-1"
+    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-163108460-1');
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+      gtag("config", "UA-163108460-1")
     </script>
   </head>
   <body>
     <header class="top-box">
-      <h1><a href="http://45.19.182.21:8002/">COVID-19 Open Research Dataset Search</a></h1>
+      <h1>
+        <a href="http://45.19.182.21:8002/"
+          >COVID-19 Open Research Dataset Search</a
+        >
+      </h1>
       <h3>Urban Computing Lab, NJIT</h3>
     </header>
-    <a class="link" href="tutorial/index.html">Tutorial</a>
+    <div class="link">
+      <a class="link1" href="tutorial/index.html">Tutorial</a>
+      <a
+        class="link2"
+        href=" https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge"
+        >Data source: https://www.kaggle.com</a
+      >
+    </div>
 
     <main>
-      <section id="search" title="Here are fields we provide.  Users can select what you want to search the text you just entered.">
+      <section
+        id="search"
+        title="Here are fields we provide.  Users can select what you want to search the text you just entered."
+      >
         <form id="query">
           <input
             id="query-text"
@@ -44,7 +66,7 @@
             onchange="search()"
             placeholder="Enter the text here or click the point on the graph to search the special field."
             class="input_search"
-            />
+          />
           <!-- <p>Here are fields we provide.  You can select what you want to search the text you just entered.</p> -->
           <section>
             <section>
@@ -81,7 +103,6 @@
         <!--   We use Elasticsearch as our backend full-text search engine. -->
         <!--   The results are shown below.  You can see many <span style="background: yellow">highlighted</span> words on it. -->
         <!-- </p> -->
-
       </section>
 
       <div id="chart-container">
@@ -96,14 +117,18 @@
             </section>
             <section>
               <p>Select clusters:</p>
-              <input type="number" min="1" id="cc" value="5" onchange="load_visualize()">
+              <input
+                type="number"
+                min="1"
+                id="cc"
+                value="5"
+                onchange="load_visualize()"
+              />
             </section>
           </div>
         </section>
-        <div id="chart"><p>Loading</p>
-        </div>
-        <div id="keywords">
-        </div>
+        <div id="chart"><p>Loading</p></div>
+        <div id="keywords"></div>
       </div>
 
       <section id="result">
