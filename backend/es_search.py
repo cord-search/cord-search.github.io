@@ -48,7 +48,7 @@ from itertools import cycle
 from elasticsearch import Elasticsearch
 
 # Config
-from config import IDX_DETAIL, IDX_FT, IDX_FULL, RETURN_SIZE
+from config import IDX_DETAIL, IDX_FULL, RETURN_SIZE
 
 # Types
 from module import Docs, DocSOut, DocSOutWithFT
@@ -100,6 +100,7 @@ async def search(
         es.search(
             index=index,
             body={
+                "track_total_hits": True,
                 "size": return_size or RETURN_SIZE,
                 "query": {"match": {key: query}},
             },
