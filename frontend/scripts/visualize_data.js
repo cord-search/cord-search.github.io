@@ -199,7 +199,7 @@ const load_visualize = () => {
     kwds_e.innerHTML = ""
     loadProgressBar()
     axios
-        .get("http://localhost:8001/model/",
+        .get("http://localhost:8001/model",
             {
                 params:
                 {
