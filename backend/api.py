@@ -76,7 +76,7 @@ app.add_middleware(
 app.add_middleware(GZipMiddleware, minimum_size=200)
 
 
-@app.get("/index/full/", response_model=Docs)
+@app.get("/index/full", response_model=Docs)
 async def index_full_handle(
     key: str = Query("abstract", regex="^(abstract|body_text)$"),
     query: str = DEFAULT_QUERY,
@@ -86,7 +86,7 @@ async def index_full_handle(
     return await search(IDX_FULL, key, query, return_size)
 
 
-@app.get("/index/detail/", response_model=Docs)
+@app.get("/index/detail", response_model=Docs)
 async def index_detail_handle(
     query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
@@ -95,7 +95,7 @@ async def index_detail_handle(
     return await search(IDX_DETAIL, "text", query, return_size)
 
 
-@app.get("/index/ft/", response_model=Docs)
+@app.get("/index/ft", response_model=Docs)
 async def index_figure_table_handle(
     query: str = DEFAULT_QUERY,
     return_size: int = Query(100, ge=0, le=MAX_RETURN_SIZE),
@@ -104,7 +104,7 @@ async def index_figure_table_handle(
     return await search(IDX_FT, "ft_text", query, return_size)
 
 
-@app.get("/index/tp/", response_model=Docs)
+@app.get("/index/tp", response_model=Docs)
 async def index_title_paper_id_handle(
     index: str = Query(IDX_FULL, regex=f"^({'|'.join(IDXS)})$"),
     key: str = Query("title", regex=f"^(title|paper_id)$"),
@@ -115,7 +115,7 @@ async def index_title_paper_id_handle(
     return await search(index, key, query, return_size)
 
 
-@app.get("/model/", response_model=Map)
+@app.get("/model", response_model=Map)
 async def model_handle(
     model: str = Query("bert", regex="(bert|tfidf)"),
     n: int = Query(10, gt=0),
