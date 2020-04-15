@@ -241,32 +241,15 @@ input:hover,
     height: 12px;
     padding: 10px;
 }
-/* a.link {
-    align-self: flex-start;
-    flex-grow: 0;
-}
-a.link2 {
-    background: white;
-    box-shadow: 0 1px 3px #66666666;
-    display: flex;
-    align-self: center;
-    align-items: center;
-
-    height: 12px;
-    padding: 10px;
-} */
-div.link {
+.links {
     display: flex;
 }
-.link1,
-.link2 {
+a.link {
     background: white;
     box-shadow: 0 1px 3px #66666666;
     height: 12px;
     padding: 10px;
-}
-.link2 {
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .select a {
