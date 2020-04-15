@@ -1,10 +1,10 @@
 <html>
   <head>
-    <title>Cord Search</title>
+    <title>Covid 19 Paper Cluster</title>
     <meta
       name="viewport"
       content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"
-    />
+      />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
@@ -22,7 +22,7 @@
       rel="stylesheet"
       type="text/css"
       href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css"
-    />
+      />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,71 +36,82 @@
   </head>
   <body>
     <header class="top-box">
-      <h1>Cord Search</h1>
+      <h1>Covid 19 Paper Cluster</h1>
       <h3>Urban Computing Lab, NJIT</h3>
     </header>
 
     <main>
-      <form id="query">
-        <input
-          id="query-text"
-          name="text"
-          onkeypress="return search()"
-          onchange="search()"
-          placeholder="Enter the search text or click the point on the graph to search."
-          class="input_search"
-          />
-        <p>Choose search field:</p>
-        <section>
+      <section id="search">
+        <form id="query">
+          <input
+            id="query-text"
+            name="text"
+            onkeypress="return search()"
+            onchange="search()"
+            placeholder="Enter the text here or click the point on the graph to search the special field."
+            class="input_search"
+            />
+          <p>Here are fields we provide.  You can select what you want to search the text you just entered.</p>
           <section>
-            <p>Abstract</p>
-            <input type="radio" name="idx" value="full-a" checked="checked" />
+            <section>
+              <p>Abstract</p>
+              <input type="radio" name="idx" value="full-a" checked="checked" />
+            </section>
+            <section>
+              <p>Body Text</p>
+              <input type="radio" name="idx" value="full-b" />
+            </section>
+            <section>
+              <p>Paragraphs</p>
+              <input type="radio" name="idx" value="detail" />
+            </section>
+            <section>
+              <p>Figure & Table</p>
+              <input type="radio" name="idx" value="ft" />
+            </section>
+            <section>
+              <p>Title</p>
+              <input type="radio" name="idx" value="title" />
+            </section>
+            <section>
+              <p>Paper ID</p>
+              <input type="radio" name="idx" value="paper_id" />
+            </section>
           </section>
-          <section>
-            <p>Body Text</p>
-            <input type="radio" name="idx" value="full-b" />
-          </section>
-          <section>
-            <p>Paragraphs</p>
-            <input type="radio" name="idx" value="detail" />
-          </section>
-          <section>
-            <p>Figure & Table</p>
-            <input type="radio" name="idx" value="ft" />
-          </section>
-          <section>
-            <p>Title</p>
-            <input type="radio" name="idx" value="title" />
-          </section>
-          <section>
-            <p>Paper ID</p>
-            <input type="radio" name="idx" value="paper_id" />
-          </section>
-        </section>
-      </form>
+        </form>
 
-      <section id="search"></section>
-      <div><div id="chart"><p>Loading</p></div></div>
-      <section id="model">
-        <div class="select">
-          <section>
-            <label for="mm">Choose Model</label>
-            <select onchange="load_visualize()" id="mm">
-              <option value="bert">BERT</option>
-              <option value="tfidf">TFIDF</option>
-            </select>
-          </section>
-          <section>
-            <label for="cc">Choose clusters</label>
-            <input type="number" min="1" id="cc" value="8" onchange="load_visualize()">
-          </section>
-          <section class="link">
-            <a href="./map/map.html" target="_blank">Article on map</a>
-          </section>
+        <p class="info">
+          We use Elasticsearch as our backend full-text search engine.
+          The results are shown below.  You can see many <span style="background: yellow">highlighted</span> words on it.
+        </p>
+
+      </section>
+
+      <div id="chart-container">
+        <section id="model">
+          <div class="select">
+            <section>
+              <p>Users can select model here:</p>
+              <select onchange="load_visualize()" id="mm">
+                <option value="bert">BERT</option>
+                <option value="tfidf">TFIDF</option>
+              </select>
+            </section>
+            <section>
+              <p>At the same time, users can choose to cluster the result into how many categories here:</p>
+              <input type="number" min="1" id="cc" value="8" onchange="load_visualize()">
+            </section>
+            <section class="link">
+              <a href="./map/map.html" target="_blank">Click to see Map Page</a>
+            </section>
+          </div>
+        </section>
+        <div id="chart"><p>Loading</p>
         </div>
         <div id="keywords">
         </div>
-      </section>
+      </div>
+
       <section id="result">
         <p id="nodata">NO DATA</p>
       </section>
