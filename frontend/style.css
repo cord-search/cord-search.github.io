@@ -176,6 +176,7 @@ input:hover,
     display: flex;
     flex-flow: row wrap;
     overflow-x: scroll;
+    margin: 0 5px;
 }
 .select > section {
     margin: 5px 5px;

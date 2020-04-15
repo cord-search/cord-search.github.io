@@ -51,7 +51,7 @@
             placeholder="Enter the text here or click the point on the graph to search the special field."
             class="input_search"
             />
-          <p>Here are fields we provide.  You can select what you want to search the text you just entered.</p>
+          <!-- <p>Here are fields we provide.  You can select what you want to search the text you just entered.</p> -->
           <section>
             <section>
               <p>Abstract</p>
@@ -80,10 +80,10 @@
           </section>
         </form>
 
-        <p class="info">
-          We use Elasticsearch as our backend full-text search engine.
-          The results are shown below.  You can see many <span style="background: yellow">highlighted</span> words on it.
-        </p>
+        <!-- <p class="info"> -->
+        <!--   We use Elasticsearch as our backend full-text search engine. -->
+        <!--   The results are shown below.  You can see many <span style="background: yellow">highlighted</span> words on it. -->
+        <!-- </p> -->
 
       </section>
 
@@ -91,14 +91,14 @@
         <section id="model">
           <div class="select">
             <section>
-              <p>Users can select model here:</p>
+              <p>Select model:</p>
               <select onchange="load_visualize()" id="mm">
                 <option value="bert">BERT</option>
                 <option value="tfidf">TFIDF</option>
               </select>
             </section>
             <section>
-              <p>At the same time, users can choose to cluster the result into how many categories here:</p>
+              <p>Select clusters:</p>
               <input type="number" min="1" id="cc" value="8" onchange="load_visualize()">
             </section>
             <section class="link">
