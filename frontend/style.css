@@ -38,7 +38,6 @@ p {
 #query > section {
     display: flex;
     flex-flow: row;
-    justify-content: center;
     margin-top: 5px;
     overflow-x: scroll;
 }
@@ -240,6 +239,9 @@ input:hover,
     align-items: center;
     height: 12px;
     padding: 10px;
+}
+.link a {
+    padding: 5px;
 }
 .links {
     display: flex;
