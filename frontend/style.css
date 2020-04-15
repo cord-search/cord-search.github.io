@@ -150,6 +150,12 @@ main {
     flex-flow: column;
 }
 
+img {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+}
+
 #chart-container {
     box-shadow: 0 0 5px #33333333;
     display: flex;
@@ -235,6 +241,10 @@ input:hover,
     align-items: center;
     height: 12px;
     padding: 10px;
+}
+a.link {
+    align-self: flex-start;
+    flex-grow: 0;
 }
 .select a {
     text-decoration: none;
