@@ -57,11 +57,11 @@ function load_map(geo_data) {
             maxFeatureCount = Math.max(maxFeatureCount, jj)
             // radius = (0.25 * (bigger + bigger)) / resolution
             if (bigger <= 100) {
-                radius = 10 + (bigger - 1) * 0.01
+                radius = 13 + (bigger - 1) * 0.01
             } else if (bigger > 100 && bigger <= 1000) {
-                radius = 11 + (bigger - 100) * 0.01
+                radius = 16 + (bigger - 100) * 0.01
             } else {
-                radius = 20 + (bigger - 1000) * 0.01
+                radius = 26 + (bigger - 1000) * 0.01
             }
             feature.set("radius", radius)
         }
