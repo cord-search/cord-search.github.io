@@ -61,7 +61,7 @@ CLOSED: [2020-04-14 Tue 14:24]
 - State "DONE"       from "NEXT"       [2020-04-14 Tue 14:24]
 :END:
 
-** TODO Suggestion [2/8]
+** TODO Suggestion [2/9]
 + [-] filters [2/5]
     - [X] scores
     - [ ] Time
