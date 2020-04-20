@@ -60,3 +60,19 @@ CLOSED: [2020-04-14 Tue 14:24]
 :LOGBOOK:
 - State "DONE"       from "NEXT"       [2020-04-14 Tue 14:24]
 :END:
+
+** TODO Suggestion [2/8]
++ [-] filters [2/5]
+    - [X] scores
+    - [ ] Time
+    - [ ] abcd
+    - [X] filter in side the result
+    - [ ] by cluster
++ [X] help
++ [ ] search behavior
++ [ ] map axis
++ [ ] map full extend
++ [ ] map select
++ [ ] connection between map, cluster and search
++ [X] label in keywords
++ [ ] mobile
