@@ -108,6 +108,7 @@ const load_visualize2 = dataToRead => {
         xAxis: [
             {
                 type: "value",
+                show:false,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}",
@@ -120,6 +121,7 @@ const load_visualize2 = dataToRead => {
         yAxis: [
             {
                 type: "value",
+                show:false,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}",

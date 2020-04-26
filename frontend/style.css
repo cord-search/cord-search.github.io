@@ -241,17 +241,33 @@ input:hover,
     padding: 10px;
 }
 .link a {
-    padding: 5px;
+    padding: 10px;
 }
 .links {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 80px 300px;
+    grid-gap: 10px;
 }
 a.link {
+    /* using grid adjust */
+    display: block;
+    text-align: center;
     background: white;
     box-shadow: 0 1px 3px #66666666;
     height: 12px;
-    padding: 10px;
-    margin-right: 10px;
+    padding: 0.8rem;
+    /* margin-right: 10px; */
+}
+/*In case of width too small the string beyong bottom */
+a.link:nth-child(2) {
+    min-width: 300px;
+}
+/* when screen with change display tutorial and data source to two row */
+@media (max-width: 700px) {
+    .links {
+        grid-template-columns: 1fr;
+    }
 }
 
 .select a {
