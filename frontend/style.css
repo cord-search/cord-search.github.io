@@ -337,8 +337,7 @@ button {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
     margin: 10px 0;
     box-shadow: 0 0 5px #33333333;
 }
@@ -348,6 +347,7 @@ button {
 
 #result > p#nodata {
     font-size: 2rem;
+    margin: auto;
 }
 
 #result > header {

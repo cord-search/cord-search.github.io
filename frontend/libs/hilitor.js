@@ -2,14 +2,14 @@
 // Please acknowledge use of this code by including this header.
 // https://www.the-art-of-web.com/javascript/search-highlight/
 
-function Hilitor(id, tag)
+function Hilitor(id, color, tag)
 {
 
     // private variables
     var targetNode = document.getElementById(id) || document.getElementById('result');
     var hiliteTag = tag || "MARK";
     var skipTags = new RegExp("^(?:" + hiliteTag + "|SCRIPT|FORM|SPAN)$");
-    var colors = ["#ff6"];
+    var colors = [color || "#ff6"];
     var wordColor = [];
     var colorIdx = 0;
     var matchRegExp = "";
@@ -56,12 +56,17 @@ function Hilitor(id, tag)
         }
     };
 
-    this.setRegex = function(input)
+    this.setRegex = function(input, x)
     {
         input = input.replace(endRegExp, "");
-        input = input.replace(breakRegExp, "|");
+        if (!x){
+            input = input.replace(breakRegExp, "|");
+        }
         input = input.replace(/^\||\|$/g, "");
         if(input) {
+            if (x){
+                input = input.replace("(", "\\(").replace(")", "\\)")
+            }
             var re = "(" + input + ")";
             if(!this.openLeft) {
                 re = "\\b" + re;
@@ -124,13 +129,13 @@ function Hilitor(id, tag)
     };
 
     // start highlighting at target node
-    this.apply = function(input)
+    this.apply = function(input, x)
     {
         this.remove();
         if(input === undefined || !(input = input.replace(/(^\s+|\s+$)/g, ""))) {
             return;
         }
-        if(this.setRegex(input)) {
+        if(this.setRegex(input, x)) {
             this.hiliteWords(targetNode);
         }
         return matchRegExp;

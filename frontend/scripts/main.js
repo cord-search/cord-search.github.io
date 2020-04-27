@@ -42,6 +42,23 @@ function select_idx(query) {
     }
 }
 
+function filter_in() {
+    const filter_inside = document.querySelector("#filter_in").value
+    var i = 0
+    Array.from(document.querySelectorAll("#query_container > div"))
+        .map((q, _) => {
+            if (q.textContent.includes(filter_inside)) {
+                q.classList.remove("hide")
+                i++
+            } else {
+                q.classList.add("hide")
+            }
+        })
+    summary =  document.querySelector("#summary")
+    summary.innerHTML = summary.innerHTML.replace(/Filtered: \d+/gi, "Filtered: " + i)
+    new Hilitor("container", "#a7e9af", "FMARK").apply(filter_inside, true)
+}
+
 function search() {
     const res_pos = document.querySelector("#result")
     res_pos.innerHTML = ""
@@ -49,10 +66,23 @@ function search() {
     const query = document.querySelector("#query")
     const querystr = query.text.value
 
+    const filter_inside = document.createElement("input")
+    filter_inside.id = "filter_in"
+    filter_inside.classList.add("input_search")
+    filter_inside.placeholder("Enter text here to filter them.")
+    filter_inside.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            filter_in();
+        }
+    })
+
     //load_visualize()
     // Query
     axios(select_idx(query)).then(res => {
         console.log(res.data)
+
+        res_pos.appendChild(filter_inside)
+
 
         const summary =
             document.querySelector("#summary") ||
@@ -116,7 +146,6 @@ window.onload = () => {
             if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
                 if (e.target.nodeName == 'INPUT' && e.target.type == 'text') {
                     e.preventDefault();
-                    search();
                     return false;
                 }
             }
