@@ -1,3 +1,11 @@
+var TITLES = {}
+
+function update_titles(data){
+    data.map((datum, _) => {
+        TITLES[datum.question] = datum.catagory
+    })
+}
+
 function build_query(url, params) {
     return {
         method: "get",

@@ -227,5 +227,6 @@ const load_visualize = () => {
             add_kwds(data_legend, res.data.kws)
             read_data(res.data.points)
             load_visualize2(res.data.points)
+            update_titles(res.data.points)
         })
 }
