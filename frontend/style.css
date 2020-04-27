@@ -545,6 +545,10 @@ button {
     max-height: 100vh;
 }
 
+#filter_in {
+    margin: 10px;
+}
+
 .from {
     text-shadow: 0 0 10px #5b8c5a;
 }
