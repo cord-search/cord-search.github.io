@@ -69,7 +69,7 @@ function search() {
     const filter_inside = document.createElement("input")
     filter_inside.id = "filter_in"
     filter_inside.classList.add("input_search")
-    filter_inside.placeholder = "Enter text here to filter them."
+    filter_inside.placeholder = "Filter by text here."
     filter_inside.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             filter_in();
