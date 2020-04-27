@@ -35,7 +35,7 @@ const load_visualize2 = dataToRead => {
         tooltip: {
             // trigger: 'axis',
             showDelay: 0,
-            formatter: function (params) {
+            formatter: function(params) {
                 return (
                     '<div class="tool_div">' +
                     params.value[2] +
@@ -108,7 +108,7 @@ const load_visualize2 = dataToRead => {
         xAxis: [
             {
                 type: "value",
-                show:false,
+                show: false,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}",
@@ -121,7 +121,7 @@ const load_visualize2 = dataToRead => {
         yAxis: [
             {
                 type: "value",
-                show:false,
+                show: false,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}",
@@ -179,7 +179,7 @@ const load_visualize2 = dataToRead => {
     if (option && typeof option === "object") {
         myChart.setOption(option, true)
     }
-    myChart.on("click", function (params) {
+    myChart.on("click", function(params) {
         let chartData = params.value[2]
         document.getElementById("query").text.value = chartData
         search()
@@ -191,10 +191,20 @@ const add_kwds = (cats, kwds) => {
     kwds_e.innerHTML = ""
     const kt = document.createElement("p")
     kt.innerText = "Keywords order by frequency"
+    const colors = data_legend.map(
+        _ => "#" + Math.random().toString(16).substr(-6)
+    )
     kwds_e.appendChild(kt)
     kwds.map((kwd, idx) => {
         const p = document.createElement("p")
-        p.innerText = cats[idx] + ": " + kwd
+        p.innerHTML = (
+            "<span style=\"background-color:"
+            + colors[idx]
+            + ";padding: 0 10px;border-radius:5px;margin-right:5px\"></span>"
+            + cats[idx]
+            + ": "
+            + kwd
+        )
         kwds_e.appendChild(p)
     })
 }
