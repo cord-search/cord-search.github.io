@@ -140,7 +140,7 @@ h3 {
 }
 
 .hide {
-    display: none;
+    display: none!important;
 }
 
 main {
@@ -303,7 +303,7 @@ button {
     border: none;
 }
 
-#mm {
+.select {
     font-size: 0.7rem;
     padding: 10px;
 }
@@ -573,4 +573,21 @@ button {
 #nprogress .spinner-icon {
     border-top-color: red !important;
     border-left-color: red !important;
+}
+
+/* Tool Tip */
+#tool-tip {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    max-width: 60vw;
+    display: flex;
+    padding: 10px;
+    background-color: #a7e9afAA;
+}
+#tool-tip > p {
+    margin: 0;
+}
+#tool-tip > p > span {
+    color: #f69d9d;
 }

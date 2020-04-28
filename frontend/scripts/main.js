@@ -1,9 +1,30 @@
-var TITLES = {}
+let TITLES = {}
+let CATS = new Set()
 
-function update_titles(data){
+function update_tc(data) {
+    TITLES = {}
+    CATS.clear()
     data.map((datum, _) => {
         TITLES[datum.question] = datum.catagory
+        CATS.add(datum.catagory)
     })
+}
+
+function update_tool_tip(text, hide, ms) {
+    document.querySelector("#tool-tip > p").innerHTML = text
+    if (hide) {
+        if (ms){
+            setTimeout(() => document.querySelector("#tool-tip").classList.add("hide"), ms)
+        } else {
+            document.querySelector("#tool-tip").classList.add("hide")
+        }
+    } else {
+        if (ms) {
+            setTimeout(() => document.querySelector("#tool-tip").classList.remove("hide"), ms)
+        } else {
+            document.querySelector("#tool-tip").classList.remove("hide")
+        }
+    }
 }
 
 function build_query(url, params) {
@@ -51,20 +72,23 @@ function select_idx(query) {
 }
 
 function filter_in() {
-    const filter_inside = document.querySelector("#filter_in").value
+    const filter_text = document.querySelector("#filter_in > .ftext").value
+    const filter_cluster = document.querySelector("#filter_in > .fcluster").value
     var i = 0
     Array.from(document.querySelectorAll("#query_container > div"))
         .map((q, _) => {
-            if (q.textContent.includes(filter_inside)) {
+            if (q.textContent.includes(filter_text) && (filter_cluster == -1 || TITLES[q.querySelector("h2").textContent] == filter_cluster)) {
                 q.classList.remove("hide")
                 i++
             } else {
                 q.classList.add("hide")
             }
         })
-    summary =  document.querySelector("#summary")
+
+    summary = document.querySelector("#summary")
     summary.innerHTML = summary.innerHTML.replace(/Filtered: \d+/gi, "Filtered: " + i)
-    new Hilitor("container", "#a7e9af", "FMARK").apply(filter_inside, true)
+
+    new Hilitor("container", "#a7e9af", "FMARK").apply(filter_text, true)
 }
 
 function search() {
@@ -74,20 +98,44 @@ function search() {
     const query = document.querySelector("#query")
     const querystr = query.text.value
 
-    const filter_inside = document.createElement("input")
+    const filter_inside = document.createElement("section")
     filter_inside.id = "filter_in"
-    filter_inside.classList.add("input_search")
-    filter_inside.placeholder = "Filter by text here."
-    filter_inside.addEventListener('keydown', (e) => {
+
+    const filter_text = document.createElement("input")
+    filter_text.classList.add("input_search")
+    filter_text.classList.add("ftext")
+    filter_text.placeholder = "Filter by text here."
+    filter_text.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             filter_in();
         }
     })
 
+    const filter_cluster = document.createElement("select")
+    const cluster_o0 = document.createElement("option")
+    filter_cluster.classList.add("fcluster")
+    filter_cluster.classList.add("select")
+    filter_cluster.onchange = () => filter_in()
+    cluster_o0.value = -1
+    cluster_o0.innerText = "NONE"
+    filter_cluster.appendChild(cluster_o0)
+    Array.from(CATS).sort().map((c, _) => {
+        const cluster_o = document.createElement("option")
+        cluster_o.value = c
+        cluster_o.innerText = "c-" + c
+        filter_cluster.appendChild(cluster_o)
+    })
+
+    filter_inside.appendChild(filter_text)
+    filter_inside.appendChild(filter_cluster)
+
+    update_tool_tip("Searching: <span>" + querystr + "</span> <br /> Please wait.", false)
     //load_visualize()
     // Query
     axios(select_idx(query)).then(res => {
         console.log(res.data)
+
+        res_pos.innerHTML = ""
 
         res_pos.appendChild(filter_inside)
 
@@ -130,6 +178,7 @@ function search() {
         })
         res_pos.appendChild(container)
         new Hilitor("container").apply(querystr)
+        update_tool_tip("Searching: <br /><span>" + querystr + "</span> <br /> Done.  See the <a href='#result'>results</a>", true, 4000)
     })
 }
 

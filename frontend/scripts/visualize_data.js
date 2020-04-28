@@ -215,6 +215,7 @@ const load_visualize = () => {
     dom.innerHTML = "<p>Loading</p>"
     kwds_e.innerHTML = ""
     loadProgressBar()
+    update_tool_tip("Loading...", false)
     axios
         .get("http://localhost:8001/model", {
             params: {
@@ -227,6 +228,7 @@ const load_visualize = () => {
             add_kwds(data_legend, res.data.kws)
             read_data(res.data.points)
             load_visualize2(res.data.points)
-            update_titles(res.data.points)
+            update_tc(res.data.points)
+            update_tool_tip("Done!", true, 2000)
         })
 }

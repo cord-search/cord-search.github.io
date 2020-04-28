@@ -109,7 +109,7 @@
           <div class="select">
             <section>
               <p>Select model:</p>
-              <select onchange="load_visualize()" id="mm">
+              <select onchange="load_visualize()" id="mm" class="select">
                 <option value="bert">BERT</option>
                 <option value="tfidf">TFIDF</option>
               </select>
@@ -136,6 +136,7 @@
     </main>
 
     <div id="up" onclick="window.scrollTo(0,0)"><a href="#">^</a></div>
+    <div id="tool-tip" class="hide"><p> </p></div>
     <script src="https://unpkg.com/aos/dist/aos.js"></script>
   </body>
 </html>
