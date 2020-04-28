@@ -56,13 +56,14 @@ const load_visualize2 = dataToRead => {
             },
         },
         toolbox: {
-            itemSize: 20,
+            itemSize: 14,
             iconStyle: {
                 color: "",
-                borderColor: "grey",
-                borderWidth: 3,
+                borderColor: "#333",
+                borderWidth: 1,
             },
             feature: {
+                restore: {title: "restore"},
                 dataZoom: {
                     title: {
                         zoom: "area zooming",
@@ -70,18 +71,16 @@ const load_visualize2 = dataToRead => {
                     },
                 },
                 brush: {
-                    type: ["zoom", "back", "rect", "polygon", "clear"],
+                    type: ["rect", "polygon", "clear"],
                     title: {
-                        zoom: "area zooming",
-                        back: "restore area zooming",
-                        rect: "Rectangle selection",
-                        polygon: "Polygon selection",
-                        clear: "Clear selection",
+                        rect: "rectangle selection",
+                        polygon: "polygon selection",
+                        clear: "clear selection",
                     },
                 },
+                saveAsImage: {title : "save as image"},
             },
         },
-        brush: {},
         dataZoom: [
             {
                 type: "inside",
