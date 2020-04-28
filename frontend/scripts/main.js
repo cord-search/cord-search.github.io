@@ -91,6 +91,25 @@ function filter_in() {
     new Hilitor("container", "#a7e9af", "FMARK").apply(filter_text, true)
 }
 
+function update_cluster_options(){
+    const filter_cluster = document.querySelector(".fcluster") || document.createElement("select")
+    filter_cluster.classList.add("fcluster")
+    filter_cluster.classList.add("select")
+    filter_cluster.innerHTML = ""
+
+    const cluster_o0 = document.createElement("option")
+    cluster_o0.value = -1
+    cluster_o0.innerText = "NONE"
+    filter_cluster.appendChild(cluster_o0)
+    Array.from(CATS).sort().map((c, _) => {
+        const cluster_o = document.createElement("option")
+        cluster_o.value = c
+        cluster_o.innerText = "c-" + c
+        filter_cluster.appendChild(cluster_o)
+    })
+    return filter_cluster
+}
+
 function search() {
     const res_pos = document.querySelector("#result")
     res_pos.innerHTML = ""
@@ -111,20 +130,7 @@ function search() {
         }
     })
 
-    const filter_cluster = document.createElement("select")
-    const cluster_o0 = document.createElement("option")
-    filter_cluster.classList.add("fcluster")
-    filter_cluster.classList.add("select")
-    filter_cluster.onchange = () => filter_in()
-    cluster_o0.value = -1
-    cluster_o0.innerText = "NONE"
-    filter_cluster.appendChild(cluster_o0)
-    Array.from(CATS).sort().map((c, _) => {
-        const cluster_o = document.createElement("option")
-        cluster_o.value = c
-        cluster_o.innerText = "c-" + c
-        filter_cluster.appendChild(cluster_o)
-    })
+    const filter_cluster = update_cluster_options()
 
     filter_inside.appendChild(filter_text)
     filter_inside.appendChild(filter_cluster)

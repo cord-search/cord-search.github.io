@@ -229,6 +229,7 @@ const load_visualize = () => {
             read_data(res.data.points)
             load_visualize2(res.data.points)
             update_tc(res.data.points)
+            update_cluster_options()
             update_tool_tip("Done!", true, 2000)
         })
 }
