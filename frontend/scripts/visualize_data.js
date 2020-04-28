@@ -27,7 +27,7 @@ const load_visualize2 = dataToRead => {
 
     let option = {
         title: {
-            text: "Interactive Question Category Visualization",
+            text: "",
             subtext: "",
             left: "center",
         },
@@ -69,14 +69,16 @@ const load_visualize2 = dataToRead => {
                         back: "restore area zooming",
                     },
                 },
-                // brush: {
-                //     type: ["rect", "polygon", "clear"],
-                //     title: {
-                //         rect: "Rectangle selection",
-                //         polygon: "Polygon selection",
-                //         clear: "Clear selection",
-                //     },
-                // },
+                brush: {
+                    type: ["zoom", "back", "rect", "polygon", "clear"],
+                    title: {
+                        zoom: "area zooming",
+                        back: "restore area zooming",
+                        rect: "Rectangle selection",
+                        polygon: "Polygon selection",
+                        clear: "Clear selection",
+                    },
+                },
             },
         },
         brush: {},
