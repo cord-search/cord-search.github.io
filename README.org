@@ -61,13 +61,13 @@ CLOSED: [2020-04-14 Tue 14:24]
 - State "DONE"       from "NEXT"       [2020-04-14 Tue 14:24]
 :END:
 
-** TODO Suggestion [3/9]
-+ [-] filters [2/5]
+** TODO Suggestion [4/9]
++ [-] filters [3/5]
     - [X] scores
     - [ ] Time
     - [ ] abcd
     - [X] filter in side the result
-    - [ ] by cluster
+    - [X] by cluster
 + [X] help
 + [X] search behavior
 + [ ] map axis
@@ -75,4 +75,4 @@ CLOSED: [2020-04-14 Tue 14:24]
 + [ ] map select
 + [ ] connection between map, cluster and search
 + [X] label in keywords
-+ [ ] mobile
++ [X] mobile
