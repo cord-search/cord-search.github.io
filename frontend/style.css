@@ -550,6 +550,8 @@ button {
 #query_container {
     order: 3;
     align-self: stretch;
+    display: flex;
+    flex-flow: column;
 }
 #query_container > div {
     max-height: 20vh;
@@ -557,6 +559,9 @@ button {
 }
 #query_container > div:hover {
     max-height: 100vh;
+}
+#query_container > div.pin {
+    order: -1;
 }
 
 #filter_in {

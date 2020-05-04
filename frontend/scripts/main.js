@@ -110,7 +110,7 @@ function update_cluster_options(){
     return filter_cluster
 }
 
-function search() {
+function search(x) {
     const res_pos = document.querySelector("#result")
     res_pos.innerHTML = ""
 
@@ -167,6 +167,9 @@ function search() {
 
         res.data.docs.map((doc, iv) => {
             const result = document.createElement("div")
+            if (doc.title == x){
+                result.clasList.add("pin")
+            }
             // Header
             const h = document.createElement("header")
             const h_h2 = document.createElement("h2")

@@ -180,7 +180,7 @@ const load_visualize2 = dataToRead => {
     myChart.on("click", function(params) {
         let chartData = params.value[2]
         document.getElementById("query").text.value = chartData
-        search()
+        search(chartData)
     })
 }
 
