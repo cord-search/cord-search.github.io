@@ -1,6 +1,7 @@
 let visual_data
 let data_legend
 let mark = []
+let colors = []
 const read_data = question_data => {
     visual_data = []
     question_data.map(i => {
@@ -20,10 +21,6 @@ const load_visualize2 = dataToRead => {
         }
     }
     console.log(mark)
-
-    const colors = data_legend.map(
-        _ => "#" + Math.random().toString(16).substr(-6)
-    )
 
     let option = {
         title: {
@@ -192,15 +189,12 @@ const add_kwds = (cats, kwds) => {
     kwds_e.innerHTML = ""
     const kt = document.createElement("p")
     kt.innerText = "Keywords order by frequency"
-    const colors = data_legend.map(
-        _ => "#" + Math.random().toString(16).substr(-6)
-    )
     kwds_e.appendChild(kt)
     kwds.map((kwd, idx) => {
         const p = document.createElement("p")
         p.innerHTML = (
             "<span style=\"background-color:"
-            + colors[idx]
+            + (idx == colors.length - 1 ? colors[0] : colors[idx + 1])
             + ";padding: 0 10px;border-radius:5px;margin-right:5px\"></span>"
             + cats[idx]
             + ": "
@@ -226,9 +220,12 @@ const load_visualize = () => {
         })
         .then(res => {
             data_legend = res.data.cats
-            add_kwds(data_legend, res.data.kws)
+            colors = data_legend.map(
+                _ => "#" + Math.random().toString(16).substr(-6)
+            )
             read_data(res.data.points)
             load_visualize2(res.data.points)
+            add_kwds(data_legend, res.data.kws)
             update_tc(res.data.points)
             update_cluster_options()
             update_tool_tip("Done!", true, 2000)
