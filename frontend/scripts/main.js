@@ -94,7 +94,7 @@ function filter_in() {
 function update_cluster_options(){
     const filter_cluster = document.querySelector(".fcluster") || document.createElement("select")
     filter_cluster.classList.add("fcluster")
-    filter_cluster.classList.add("select")
+    filter_cluster.classList.add("mselect")
     filter_cluster.innerHTML = ""
 
     const cluster_o0 = document.createElement("option")
