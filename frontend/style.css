@@ -198,7 +198,6 @@ img {
 }
 select,
 input {
-    height: 2rem;
     font-size: 1rem;
     font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
     background: white;
@@ -310,7 +309,7 @@ button {
 }
 
 .mselect {
-    font-size: 0.7rem;
+    font-size: 1rem;
     padding: 10px;
 }
 #cc {
