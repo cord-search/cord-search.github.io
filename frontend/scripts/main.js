@@ -99,7 +99,7 @@ function update_cluster_options(){
 
     const cluster_o0 = document.createElement("option")
     cluster_o0.value = -1
-    cluster_o0.innerText = "ALL"
+    cluster_o0.innerText = "Filter by category here"
     filter_cluster.appendChild(cluster_o0)
     Array.from(CATS).sort().map((c, _) => {
         const cluster_o = document.createElement("option")
@@ -131,6 +131,7 @@ function search() {
     })
 
     const filter_cluster = update_cluster_options()
+    filter_cluster.onchange = filter_in
 
     filter_inside.appendChild(filter_text)
     filter_inside.appendChild(filter_cluster)
@@ -169,7 +170,10 @@ function search() {
             // Header
             const h = document.createElement("header")
             const h_h2 = document.createElement("h2")
-            h_h2.innerText = doc.title
+            const h_sp = document.createElement("span")
+            h_h2.innerHTML = doc.title
+            h_sp.innerHTML = iv + 1
+            h.appendChild(h_sp)
             h.appendChild(h_h2)
             result.appendChild(h)
 

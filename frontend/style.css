@@ -375,6 +375,15 @@ button {
 #result > div > div > header {
     background: #eee;
     padding: 5px 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+#result > div > div > header > span {
+    background-color: #ddd;
+    font-size: 1.3rem;
+    padding: 3px;
+    margin: 0 3px;
 }
 #result > div > div > header > h2 {
     font-size: 1rem;
