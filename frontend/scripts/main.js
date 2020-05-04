@@ -168,7 +168,7 @@ function search(x) {
         res.data.docs.map((doc, iv) => {
             const result = document.createElement("div")
             if (doc.title == x){
-                result.clasList.add("pin")
+                result.classList.add("pin")
             }
             // Header
             const h = document.createElement("header")
