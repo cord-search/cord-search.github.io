@@ -99,7 +99,7 @@ function update_cluster_options(){
 
     const cluster_o0 = document.createElement("option")
     cluster_o0.value = -1
-    cluster_o0.innerText = "NONE"
+    cluster_o0.innerText = "ALL"
     filter_cluster.appendChild(cluster_o0)
     Array.from(CATS).sort().map((c, _) => {
         const cluster_o = document.createElement("option")
