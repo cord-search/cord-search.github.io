@@ -61,7 +61,7 @@ CLOSED: [2020-04-14 Tue 14:24]
 - State "DONE"       from "NEXT"       [2020-04-14 Tue 14:24]
 :END:
 
-** TODO Suggestion 1 [5/7]
+** TODO Suggestion 1 [7/9]
 + [-] filters [3/5]
     - [X] scores
     - [ ] Time
@@ -74,14 +74,15 @@ CLOSED: [2020-04-14 Tue 14:24]
 + [X] map full extend
 + [X] map select
 + [ ] connection between map, cluster and search
-
-** TODO Suggestion 2 [6/10]
 + [X] label in keywords
 + [X] mobile
+
+** TODO Suggestion 2 [4/8]
+
 + [X] Add label "Filter by category"
 + [ ] searching freeze problem(?)
 + [X] color different from labels (caused by echarts, now fixed by hardcode)
-+ [X] aad index to result
++ [X] add index to result
 + [ ] pages [0/2]
     - [ ] split into pages(?)
     - [ ] only n results
