@@ -212,7 +212,7 @@ const load_visualize = () => {
     loadProgressBar()
     update_tool_tip("Loading...", false)
     axios
-        .get("http://localhost:8001/model", {
+        .get("http://localhost:8001/api/model", {
             params: {
                 n: document.querySelector("#cc").value,
                 model: document.querySelector("#mm").value,
