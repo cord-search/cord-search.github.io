@@ -1,6 +1,7 @@
 let visual_data
 let data_legend
 let mark = []
+let colors = []
 const read_data = question_data => {
     visual_data = []
     question_data.map(i => {
@@ -20,10 +21,6 @@ const load_visualize2 = dataToRead => {
         }
     }
     console.log(mark)
-
-    const colors = data_legend.map(
-        _ => "#" + Math.random().toString(16).substr(-6)
-    )
 
     let option = {
         title: {
@@ -56,13 +53,14 @@ const load_visualize2 = dataToRead => {
             },
         },
         toolbox: {
-            itemSize: 20,
+            itemSize: 14,
             iconStyle: {
                 color: "",
-                borderColor: "grey",
-                borderWidth: 3,
+                borderColor: "#333",
+                borderWidth: 1,
             },
             feature: {
+                restore: {title: "restore"},
                 dataZoom: {
                     title: {
                         zoom: "area zooming",
@@ -72,14 +70,14 @@ const load_visualize2 = dataToRead => {
                 brush: {
                     type: ["rect", "polygon", "clear"],
                     title: {
-                        rect: "Rectangle selection",
-                        polygon: "Polygon selection",
-                        clear: "Clear selection",
+                        rect: "rectangle selection",
+                        polygon: "polygon selection",
+                        clear: "clear selection",
                     },
                 },
+                saveAsImage: {title : "save as image"},
             },
         },
-        brush: {},
         dataZoom: [
             {
                 type: "inside",
@@ -182,7 +180,7 @@ const load_visualize2 = dataToRead => {
     myChart.on("click", function(params) {
         let chartData = params.value[2]
         document.getElementById("query").text.value = chartData
-        search()
+        search(chartData)
     })
 }
 
@@ -191,15 +189,12 @@ const add_kwds = (cats, kwds) => {
     kwds_e.innerHTML = ""
     const kt = document.createElement("p")
     kt.innerText = "Keywords order by frequency"
-    const colors = data_legend.map(
-        _ => "#" + Math.random().toString(16).substr(-6)
-    )
     kwds_e.appendChild(kt)
     kwds.map((kwd, idx) => {
         const p = document.createElement("p")
         p.innerHTML = (
             "<span style=\"background-color:"
-            + colors[idx]
+            + (idx == colors.length - 1 ? colors[0] : colors[idx + 1])
             + ";padding: 0 10px;border-radius:5px;margin-right:5px\"></span>"
             + cats[idx]
             + ": "
@@ -215,8 +210,9 @@ const load_visualize = () => {
     dom.innerHTML = "<p>Loading</p>"
     kwds_e.innerHTML = ""
     loadProgressBar()
+    update_tool_tip("Loading...", false)
     axios
-        .get("http://localhost:8001/model", {
+        .get("http://localhost:8001/api/model", {
             params: {
                 n: document.querySelector("#cc").value,
                 model: document.querySelector("#mm").value,
@@ -224,9 +220,14 @@ const load_visualize = () => {
         })
         .then(res => {
             data_legend = res.data.cats
-            add_kwds(data_legend, res.data.kws)
+            colors = data_legend.map(
+                _ => "#" + Math.random().toString(16).substr(-6)
+            )
             read_data(res.data.points)
             load_visualize2(res.data.points)
-            update_titles(res.data.points)
+            add_kwds(data_legend, res.data.kws)
+            update_tc(res.data.points)
+            update_cluster_options()
+            update_tool_tip("Done!", true, 2000)
         })
 }

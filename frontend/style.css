@@ -82,6 +82,7 @@ h1 {
 h1 > a {
     text-decoration: none;
     color: black;
+    display: flex;
 }
 h1 > a:hover {
     color: black;
@@ -90,6 +91,11 @@ h1 > a:hover {
 h1 > a:active {
     text-decoration: none;
     color: black;
+}
+h1 > a > img {
+    height: 1.5rem;
+    padding-right: 5px;
+    width: inherit;
 }
 
 h3 {
@@ -140,7 +146,7 @@ h3 {
 }
 
 .hide {
-    display: none;
+    display: none!important;
 }
 
 main {
@@ -192,7 +198,6 @@ img {
 }
 select,
 input {
-    height: 2rem;
     font-size: 1rem;
     font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
     background: white;
@@ -303,8 +308,8 @@ button {
     border: none;
 }
 
-#mm {
-    font-size: 0.7rem;
+.mselect {
+    font-size: 1rem;
     padding: 10px;
 }
 #cc {
@@ -369,6 +374,15 @@ button {
 #result > div > div > header {
     background: #eee;
     padding: 5px 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+#result > div > div > header > span {
+    background-color: #ddd;
+    font-size: 1.3rem;
+    padding: 3px;
+    margin: 0 3px;
 }
 #result > div > div > header > h2 {
     font-size: 1rem;
@@ -536,6 +550,8 @@ button {
 #query_container {
     order: 3;
     align-self: stretch;
+    display: flex;
+    flex-flow: column;
 }
 #query_container > div {
     max-height: 20vh;
@@ -543,6 +559,9 @@ button {
 }
 #query_container > div:hover {
     max-height: 100vh;
+}
+#query_container > div.pin {
+    order: -1;
 }
 
 #filter_in {
@@ -573,4 +592,21 @@ button {
 #nprogress .spinner-icon {
     border-top-color: red !important;
     border-left-color: red !important;
+}
+
+/* Tool Tip */
+#tool-tip {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    max-width: 60vw;
+    display: flex;
+    padding: 10px;
+    background-color: #a7e9afAA;
+}
+#tool-tip > p {
+    margin: 0;
+}
+#tool-tip > p > span {
+    color: #f69d9d;
 }

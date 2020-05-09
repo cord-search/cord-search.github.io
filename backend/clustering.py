@@ -146,7 +146,7 @@ def build_map(model: str, n: int, kwc: int) -> Map:
     PKWS.clear()
     fited = cluster(n, model)
     return Map(
-        cats=list(map("c-{}".format, range(n))),
+        cats=list(map("c-{}".format, range(1, n + 1))),
         kws=list(
             map(
                 lambda c: ", ".join(
