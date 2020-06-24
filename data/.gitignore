@@ -3,3 +3,5 @@ CORD-19-research-challenge
 *.js
 n_tfidf_*
 tsne.txt
+n_glove_*
+glove.6B.50d.txt
