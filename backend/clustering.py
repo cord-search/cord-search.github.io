@@ -63,7 +63,7 @@ from typing import Counter as CounterT
 from typing import List, Tuple
 
 SIZE = 47140
-PKWS = set()  # type: Set[str]
+PKWS = set()  # types: Set[str]
 
 with (DATA / "scibert_embeddings.json").open() as _f, (
     DATA / "n_tfidf_ys"
@@ -71,10 +71,17 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
     DATA_PATH / "metadata.csv"
 ).open() as _g, open(
     "stopwords"
-) as _sw:
+) as _sw, (
+    DATA / "n_glove_ss"
+).open() as _gss, (
+    DATA / "n_glove_ys"
+).open() as _gys:
+
+    SW = set(_sw.read().splitlines())
+
     print("loading bert")
     _bert_data = json.load(_f)
-    SW = set(_sw.read().splitlines())
+
     print("loading source")
     SS_BERT = dict(
         map(
@@ -105,10 +112,22 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
             _ss.read().splitlines(),
         )
     )
+    SS_GLOVE = list(
+        map(
+            lambda ss: list(
+                filter(
+                    lambda w: bool(w) and w not in SW, re.split(r"[^a-z]+", ss)
+                )
+            ),
+            _gss.read().splitlines(),
+        )
+    )
+
     print("loading ys")
     YS = {  # noqa: WPS407
         "bert": list(map(lambda ele: ele["title"], _bert_data)),
         "tfidf": _ys.read().splitlines(),
+        "glove": _gys.read().splitlines(),
     }
     print("loading xs")
     XS = {  # noqa: WPS407
@@ -116,11 +135,13 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
             list(map(lambda ele: ele["scibert"], _bert_data))
         ).reshape((SIZE, -1)),
         "tfidf": np.loadtxt(((DATA / "n_tfidf_xs").as_posix())),
+        "glove": np.loadtxt(((DATA / "n_glove_xs").as_posix())),
     }
     print("loading xy")
     XY = {  # noqa: WPS407
         "bert": np.loadtxt((DATA / "tsne.txt").as_posix()),
         "tfidf": np.loadtxt(((DATA / "n_tfidf_xy").as_posix())),
+        "glove": np.loadtxt(((DATA / "n_glove_xy").as_posix())),
     }
     print("Done")
 
@@ -158,7 +179,9 @@ def build_map(model: str, n: int, kwc: int) -> Map:
                                     map(
                                         lambda ie: model == "bert"
                                         and SS_BERT[YS[model][ie[0]]]
-                                        or SS_TFIDF[ie[0]],
+                                        or model == "glove"
+                                        and SS_TFIDF[ie[0]]
+                                        or SS_GLOVE[ie[0]],
                                         filter(
                                             lambda ie: ie[1] == c,
                                             enumerate(fited),

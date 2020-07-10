@@ -117,7 +117,7 @@ async def index_title_paper_id_handle(
 
 @app.get("/api/model", response_model=Map)
 async def model_handle(
-    model: str = Query("bert", regex="(bert|tfidf)"),
+    model: str = Query("bert", regex="(bert|tfidf|glove)"),
     n: int = Query(10, gt=0),
     kwc: int = Query(15, ge=0),
 ) -> UJSONResponse:
