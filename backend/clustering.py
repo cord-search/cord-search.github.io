@@ -72,7 +72,7 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
 ).open() as _g, open(
     "stopwords"
 ) as _sw, open(
-    "words"
+    "words.txt"
 ) as _ws, (
     DATA / "n_glove_ss"
 ).open() as _gss, (
