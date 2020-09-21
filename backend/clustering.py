@@ -183,7 +183,7 @@ def build_map(model: str, n: int, kwc: int) -> Map:
                                 chain.from_iterable(
                                     map(
                                         lambda ie: model == "bert"
-                                        and SS_BERT[YS[model][ie[0]]]
+                                        and SS_BERT.get(YS[model][ie[0]], [])
                                         or model == "glove"
                                         and SS_TFIDF[ie[0]]
                                         or SS_GLOVE[ie[0]],
