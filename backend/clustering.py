@@ -71,13 +71,16 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
     DATA_PATH / "metadata.csv"
 ).open() as _g, open(
     "stopwords"
-) as _sw, (
+) as _sw, open(
+    "words"
+) as _ws, (
     DATA / "n_glove_ss"
 ).open() as _gss, (
     DATA / "n_glove_ys"
 ).open() as _gys:
 
     SW = set(_sw.read().splitlines())
+    WS = set(_ws.read().splitlines())
 
     print("loading bert")
     _bert_data = json.load(_f)
@@ -89,7 +92,7 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
                 line["title"],
                 list(
                     filter(
-                        lambda w: bool(w) and w not in SW,
+                        lambda w: bool(w) and w not in SW and w in WS,
                         re.split(
                             r"[^a-z]+",
                             ". ".join(
@@ -106,7 +109,8 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
         map(
             lambda ss: list(
                 filter(
-                    lambda w: bool(w) and w not in SW, re.split(r"[^a-z]+", ss)
+                    lambda w: bool(w) and w not in SW and w in WS,
+                    re.split(r"[^a-z]+", ss),
                 )
             ),
             _ss.read().splitlines(),
@@ -116,7 +120,8 @@ with (DATA / "scibert_embeddings.json").open() as _f, (
         map(
             lambda ss: list(
                 filter(
-                    lambda w: bool(w) and w not in SW, re.split(r"[^a-z]+", ss)
+                    lambda w: bool(w) and w not in SW and w in WS,
+                    re.split(r"[^a-z]+", ss),
                 )
             ),
             _gss.read().splitlines(),
