@@ -84,12 +84,21 @@ function load_map(geo_data) {
                     width: 1,
                 }),
                 fill: new ol.style.Fill({
+
+                    // if you want change the color in the marker
+
                     color: [
                         255,
                         153,
                         0,
                         Math.min(0.8, 0.4 + size / maxFeatureCount),
                     ],
+                    // color: [
+                    //     255,
+                    //     99,
+                    //     71,
+                    //     Math.min(0.8, 0.4 + size / maxFeatureCount),
+                    // ],
                     // color: "rgba(255, 153, 0, 0.8)",
                 }),
             }),
@@ -167,13 +176,35 @@ function load_map(geo_data) {
             center: [0, 0],
             zoom: 1,
         }),
+        // if you want change the map type
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.Stamen({
-                    layer: "toner",
+                        layer: "toner",
                 }),
             }),
         ],
+        // layers: [
+        //     new ol.layer.Tile({
+        //         source: new ol.source.Stamen({
+        //             layer: "terrain",
+        //         }),
+        //     }),
+        // ],
+        // layers: [
+        //     new ol.layer.Tile({
+        //         source: new ol.source.Stamen({
+        //             layer: "watercolor",
+        //         }),
+        //     }),
+        // ],
+        // layers: [
+        //     new ol.layer.Tile({
+        //         source: new ol.source.OSM(),
+        //         // opacity: 0.6,
+        //         // brightness: 0.2
+        //     })
+        // ],
         target: "js-map",
         controls: ol.control
             .defaults()
