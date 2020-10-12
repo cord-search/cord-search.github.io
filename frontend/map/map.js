@@ -177,13 +177,13 @@ function load_map(geo_data) {
             zoom: 1,
         }),
         // if you want change the map type
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.Stamen({
-                        layer: "toner",
-                }),
-            }),
-        ],
+        // layers: [
+        //     new ol.layer.Tile({
+        //         source: new ol.source.Stamen({
+        //                 layer: "toner",
+        //         }),
+        //     }),
+        // ],
         // layers: [
         //     new ol.layer.Tile({
         //         source: new ol.source.Stamen({
@@ -198,13 +198,13 @@ function load_map(geo_data) {
         //         }),
         //     }),
         // ],
-        // layers: [
-        //     new ol.layer.Tile({
-        //         source: new ol.source.OSM(),
-        //         // opacity: 0.6,
-        //         // brightness: 0.2
-        //     })
-        // ],
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM(),
+                // opacity: 0.6,
+                // brightness: 0.2
+            })
+        ],
         target: "js-map",
         controls: ol.control
             .defaults()
