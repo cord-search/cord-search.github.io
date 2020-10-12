@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title>COVID-19 Open Research Dataset Search</title>
+    <meta
+      name="viewport"
+      content="height=device-height,width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"
+    ></script>
+    <script type="text/javascript" src="./libs/hilitor.js"></script>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+    <script type="text/javascript" src="./scripts/visualize_data.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/nprogress.css"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-163108460-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+      gtag("config", "UA-163108460-1")
+    </script>
+  </head>
+  <body>
+    <header class="top-box">
+      <h1>
+        <a href="http://covid19papers.njit.edu/"
+          ><img src="./imgs/virus.svg"/> COVID-19 Open Research Dataset Search</a
+        >
+      </h1>
+      <h3>Urban Computing Lab, NJIT</h3>
+    </header>
+    <div class="links">
+      <a class="link" href="tutorial/index.html">Tutorial</a>
+      <a
+        class="link"
+        href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge"
+        >Data source: https://www.kaggle.com</a
+      >
+    </div>
+
+    <main>
+      <section
+        id="search"
+        title="Here are fields we provide.  Users can select what you want to search the text you just entered."
+      >
+        <form id="query">
+          <input
+            id="query-text"
+            name="text"
+            onchange="search()"
+            placeholder="Enter the text here or click the point on the graph to search the special field."
+            class="input_search"
+          />
+          <!-- <p>Here are fields we provide.  You can select what you want to search the text you just entered.</p> -->
+          <section>
+            <section>
+              <p>Abstract</p>
+              <input type="radio" name="idx" value="full-a" checked="checked" />
+            </section>
+            <section>
+              <p>Body Text</p>
+              <input type="radio" name="idx" value="full-b" />
+            </section>
+            <section>
+              <p>Paragraphs</p>
+              <input type="radio" name="idx" value="detail" />
+            </section>
+            <section>
+              <p>Figure & Table</p>
+              <input type="radio" name="idx" value="ft" />
+            </section>
+            <section>
+              <p>Title</p>
+              <input type="radio" name="idx" value="title" />
+            </section>
+            <section class="link">
+              <a href="./map/map.html" target="_blank">Map</a>
+            </section>
+            <!-- <section> -->
+            <!--   <p>Paper ID</p> -->
+            <!--   <input type="radio" name="idx" value="paper_id" /> -->
+            <!-- </section> -->
+          </section>
+        </form>
+      </section>
+
+      <div id="chart-container">
+        <section id="model">
+          <div class="select">
+            <section>
+              <p>Select model:</p>
+              <select onchange="load_visualize()" id="mm" class="mselect">
+                <option value="bert">BERT</option>
+                <option value="tfidf">TFIDF</option>
+                <option value="glove">GLOVE</option>
+              </select>
+            </section>
+            <section>
+              <p>Select clusters:</p>
+              <input
+                type="number"
+                min="1"
+                id="cc"
+                value="5"
+                onchange="load_visualize()"
+              />
+            </section>
+          </div>
+        </section>
+        <div id="chart"><p>Loading</p></div>
+        <div id="keywords"></div>
+      </div>
+
+      <section id="result">
+        <p id="nodata">NO DATA</p>
+      </section>
+    </main>
+
+    <div id="up" onclick="window.scrollTo(0,0)"><a href="#">^</a></div>
+    <div id="tool-tip" class="hide"><p> </p></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+  </body>
+</html>
